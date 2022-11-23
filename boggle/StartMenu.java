@@ -13,7 +13,6 @@ public class StartMenu {
     private int BoardSize;
     private VBox lines;
     private Stage StartMenu;
-    private int verticalSpacing = 10;
 
     private int[] gridSize = {5, 4}; // The size of the grid available here, you can adjust size here.
 
@@ -23,7 +22,7 @@ public class StartMenu {
      */
     public StartMenu(Stage stage) {
         this.StartMenu = stage;
-        lines = new VBox(verticalSpacing); //Set vertical box spacing
+        lines = new VBox(Datas.verticalSpacing); //Set vertical box spacing
         lines.setAlignment(Pos.CENTER);
 
         Label titleLine = new Label("Welcome");

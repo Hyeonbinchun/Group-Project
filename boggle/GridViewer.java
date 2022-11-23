@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -30,9 +31,10 @@ public class GridViewer {
     private final boolean[][] picked;
     private final char[][] letterBoard;
     private GameStets gameStets;
-    private final ArrayList<Position> pickedPosition;
+    private ArrayList<Position> pickedPosition;
     private Label wordLabel;
     private Label scoreLabel;
+    private Label messageLabel;
     private String word;
     private ArrayList<String> foundWords;
     private ArrayList<Rectangle> gridBox;
@@ -52,6 +54,7 @@ public class GridViewer {
         this.letterBoard = Boggle.initalizeBoard(size);
         this.board.setFocusTraversable(true);
         this.pickedPosition = new ArrayList<>();
+        this.word = "";
         this.GridButtons();
         this.allFalse();
 
@@ -66,7 +69,7 @@ public class GridViewer {
             Position current = new Position(row, col);
             if(this.pickedPosition.size() == 0) {
                 if (!this.picked[row][col] && !current.inside(this.pickedPosition)) {
-                    ((Rectangle) clicked).setStroke(Color.YELLOW);
+                    ((Rectangle) clicked).setStroke(Datas.strokeColor);
                     this.picked[row][col] = true;
                     this.pickedPosition.add(current);
                     this.addLetter(current);
@@ -75,7 +78,7 @@ public class GridViewer {
                 lastPicked = this.pickedPosition.get(this.pickedPosition.size() - 1);
                 if (!this.picked[row][col] && !current.inside(this.pickedPosition) &&
                         current.inside(valid(lastPicked))) {
-                    ((Rectangle) clicked).setStroke(Color.YELLOW);
+                    ((Rectangle) clicked).setStroke(Datas.strokeColor);
                     this.picked[row][col] = true;
                     this.pickedPosition.add(current);
                     this.addLetter(current);
@@ -113,10 +116,10 @@ public class GridViewer {
                 Label letter = new Label();
                 letter.setText(String.valueOf(letterBoard[i][j]));
                 letter.setFont(new Font("Arial", 30));
-                letter.setTextFill(Color.WHITE);
+                letter.setTextFill(Datas.textColor);
 
                 Rectangle box = new Rectangle(130, 130, Color.TRANSPARENT);
-                box.setStroke(Color.WHITESMOKE);
+                box.setStroke(Datas.boxColor);
                 box.setStrokeWidth(5);
                 this.board.add(letter, i, j);
                 this.board.add(box, i, j);
@@ -135,46 +138,58 @@ public class GridViewer {
 
 
     public void addButtons(BorderPane pane) {
-        //Showing current picked word
-        this.wordLabel = new Label("Current Word: ");
-        this.word = "";
-        this.wordLabel.setFont(new Font("Arial", 15));
-        pane.setCenter(this.wordLabel);
-
-        Button check = new Button("Check Word");
-        check.setOnAction(e -> {
+        Button checkButton = new Button("Check Word"); //button that check the word.
+        checkButton.setOnAction(e -> {
             this.checkWord();
-            board.requestFocus();
-
-            e.consume();
-        });
-        pane.setRight(check);
-
-        HBox hbox = new HBox(20);
-        this.scoreLabel = new Label("Score: 0");
-        this.scoreLabel.setFont(new Font("Arial", 15));
-        Button clearButton = new Button("Clear"); //button that clears the board
-        clearButton.setOnAction(e -> {
-            this.clearWord();
-            clearButton.setFocusTraversable(false);
             this.board.requestFocus();
             e.consume();
         });
-        hbox.getChildren().addAll(clearButton, this.scoreLabel);
-        pane.setLeft(hbox);
+        Button clearButton = new Button("Clear"); //button that clear the board
+        clearButton.setOnAction(e -> {
+            this.clearWord();
+            this.board.requestFocus();
+            e.consume();
+        });
+        pane.setRight(checkButton);
+        pane.setLeft(clearButton);
+
+        VBox vbox = new VBox(Datas.verticalSpacing);
+        this.scoreLabel = new Label("Score: 0");
+        this.scoreLabel.setFont(new Font("Arial", 15));
+        this.wordLabel = new Label("Current Word: ");
+        this.wordLabel.setFont(new Font("Arial", 15));
+        this.messageLabel = new Label("GOOD LUCK!");
+        this.scoreLabel.setFont(new Font("Arial", 15));
+
+        vbox.getChildren().addAll(this.scoreLabel, this.messageLabel, this.wordLabel);
+        pane.setCenter(vbox);
 
     }
 
     private void checkWord() {
-        System.out.println("checkword clicked");
+        for(String words: boggle.getValidWords()) {
+            if (words == this.word && !this.foundWords.contains(this.word)) {
+                this.foundWords.add(words.toLowerCase());
+
+            }
+        }
+
     }
 
     private void clearWord() {
+        this.word = "";
+        this.wordLabel.setText("Current Word: ");
+        allFalse();
+        for (Rectangle box : this.gridBox) {
+            box.setStroke(Datas.boxColor);
+        }
+        this.pickedPosition = new ArrayList<>();
+        lastPicked = new Position();
 
     }
 
     private void addLetter(Position position) {
-        this.word = this.word + letterBoard[position.getCol()][position.getRow()];
+        this.word = this.word + Character.toString(letterBoard[position.getCol()][position.getRow()]).toLowerCase();
         this.wordLabel.setText("Current Word: " + word.toLowerCase());
     }
 

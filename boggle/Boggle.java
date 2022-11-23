@@ -7,21 +7,6 @@ import java.util.*;
  */
 public class Boggle {
 
-
-    /**
-     * dice used to randomize letter assignments for a small grid
-     */ 
-    private static final String[] dice_small_grid= //dice specifications, for small and large grids
-            {"AAEEGN", "ABBJOO", "ACHOPS", "AFFKPS", "AOOTTW", "CIMOTU", "DEILRX", "DELRVY",
-                    "DISTTY", "EEGHNW", "EEINSU", "EHRTVW", "EIOSST", "ELRTTY", "HIMNQU", "HLNNRZ"};
-    /**
-     * dice used to randomize letter assignments for a big grid
-     */ 
-    private static final String[] dice_big_grid =
-            {"AAAFRS", "AAEEEE", "AAFIRS", "ADENNN", "AEEEEM", "AEEGMU", "AEGMNN", "AFIRSY",
-                    "BJKQXZ", "CCNSTW", "CEIILT", "CEILPT", "CEIPST", "DDLNOR", "DDHNOT", "DHHLOR",
-                    "DHLNOR", "EIIITT", "EMOTTT", "ENSSSU", "FIPRSY", "GORRVW", "HIPRRY", "NOOTUW", "OOOTTU"};
-
     Dictionary boggleDict = new Dictionary("/Users/a1660453695/Desktop/git life/Group-Project/boggle/wordlist.txt");
 
     private static char[][] letterBoard;
@@ -64,9 +49,9 @@ public class Boggle {
         String random_letter = "";
         String[] letters = new String[0];
         if (size == 4) {
-            letters = shuffle(dice_small_grid);
+            letters = shuffle(Datas.dice_small_grid);
         } else if (size == 5) {
-            letters =  shuffle(dice_big_grid);
+            letters =  shuffle(Datas.dice_big_grid);
         }
         //System.out.println(letters);
         for (int row=0; row < letters.length; row++) {
