@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -40,7 +39,7 @@ public class GridViewer {
     private ArrayList<Rectangle> gridBox;
     private Position lastPicked;
     private Boggle boggle;
-
+    private GameStets stats;
     /**
      * BoggleGrid constructor
      * @param size size of the grid
@@ -57,6 +56,7 @@ public class GridViewer {
         this.word = "";
         this.GridButtons();
         this.allFalse();
+        this.stats = new GameStets();
 
         //Initialize boggle to get all valid words
         this.boggle = new Boggle();
@@ -108,6 +108,9 @@ public class GridViewer {
         return direction;
     }
 
+    /**
+     * Add grid button that come up with a game board
+     */
     private void GridButtons() {
         this.board.setStyle("-fx-background-color: black");
         this.gridBox = new ArrayList<>();
@@ -136,6 +139,11 @@ public class GridViewer {
 
     }
 
+    /**
+     * add clickable button 'check word', 'clear'
+     * and display the message and score
+     * @param pane
+     */
 
     public void addButtons(BorderPane pane) {
         Button checkButton = new Button("Check Word"); //button that check the word.
@@ -155,28 +163,51 @@ public class GridViewer {
 
         VBox vbox = new VBox(Datas.verticalSpacing);
         this.scoreLabel = new Label("Score: 0");
-        this.scoreLabel.setFont(new Font("Arial", 15));
+        this.scoreLabel.setFont(Datas.fontSize);
         this.wordLabel = new Label("Current Word: ");
-        this.wordLabel.setFont(new Font("Arial", 15));
+        this.wordLabel.setFont(Datas.fontSize);
         this.messageLabel = new Label("GOOD LUCK!");
-        this.scoreLabel.setFont(new Font("Arial", 15));
+        this.scoreLabel.setFont(Datas.fontSize);
 
         vbox.getChildren().addAll(this.scoreLabel, this.messageLabel, this.wordLabel);
         pane.setCenter(vbox);
 
     }
 
+    /**
+     * Check if word is valid and make update
+     */
     private void checkWord() {
-        System.out.println("check button clicked");
-        for(String words: boggle.getValidWords()) {
-            if (words == this.word && !this.foundWords.contains(this.word)) {
-                this.foundWords.add(words.toLowerCase());
-                this.messageLabel = new Label("You found: "+ this.wordLabel+ " !!!");
+        for(String word: boggle.getValidWords()) {
+            if (this.foundWords.contains(this.word)) {
+                this.messageLabel.setText("You already found ‘"+ this.word + "’ try another word");
+                clearWord();
+                return;
+            }
+            if (word.toLowerCase().equals(this.word) && !this.foundWords.contains(this.word)) {
+                addWord();
+                return;
             }
         }
-        this.messageLabel = new Label("This word is not valid.");
+        this.messageLabel.setText("This word is not valid");
+        this.messageLabel.setFont(Datas.fontSize);
     }
 
+    /**
+     * add valid word to wordlist, and update the score
+     */
+    private void addWord() {
+        this.foundWords.add(this.word);
+        this.messageLabel.setText("You found: "+ this.word + " !!!");
+        this.messageLabel.setFont(Datas.fontSize);
+        this.stats.addWord(this.word, GameStets.Player.Human);
+        this.scoreLabel.setText("Score: " + this.stats.getScore());
+        clearWord();
+    }
+
+    /**
+     * Clear all letters that select
+     */
     private void clearWord() {
         this.word = "";
         this.wordLabel.setText("Current Word: ");
@@ -189,11 +220,18 @@ public class GridViewer {
 
     }
 
+    /**
+     * add letter at selected position to word.
+     * @param position
+     */
     private void addLetter(Position position) {
         this.word = this.word + Character.toString(letterBoard[position.getCol()][position.getRow()]).toLowerCase();
         this.wordLabel.setText("Current Word: " + word.toLowerCase());
     }
 
+    /**
+     * reset the picked position.
+     */
     private void allFalse() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
