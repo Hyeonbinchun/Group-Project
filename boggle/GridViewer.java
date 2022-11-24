@@ -59,8 +59,8 @@ public class GridViewer {
         this.allFalse();
 
         //Initialize boggle to get all valid words
-        //this.boggle = new Boggle();
-        //System.out.println(this.boggle.getValidWords().toString());
+        this.boggle = new Boggle();
+        System.out.println(this.boggle.getValidWords().toString());
 
         this.board.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->{
             Node clicked = e.getPickResult().getIntersectedNode();
@@ -167,13 +167,14 @@ public class GridViewer {
     }
 
     private void checkWord() {
+        System.out.println("check button clicked");
         for(String words: boggle.getValidWords()) {
             if (words == this.word && !this.foundWords.contains(this.word)) {
                 this.foundWords.add(words.toLowerCase());
-
+                this.messageLabel = new Label("You found: "+ this.wordLabel+ " !!!");
             }
         }
-
+        this.messageLabel = new Label("This word is not valid.");
     }
 
     private void clearWord() {
