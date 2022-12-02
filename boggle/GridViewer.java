@@ -1,8 +1,10 @@
 package boggle;
 
 import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -29,8 +31,9 @@ public class GridViewer {
     private final GridPane board;
     private final boolean[][] picked;
     private final char[][] letterBoard;
-    private GameStets gameStets;
+    private GameStats gameStats;
     private ArrayList<Position> pickedPosition;
+    private Label highestLabel;
     private Label wordLabel;
     private Label scoreLabel;
     private Label messageLabel;
@@ -39,14 +42,15 @@ public class GridViewer {
     private ArrayList<Rectangle> gridBox;
     private Position lastPicked;
     private Boggle boggle;
-    private GameStets stats;
+    private GameStats stats;
+
     /**
      * BoggleGrid constructor
      * @param size size of the grid
      */
     public GridViewer(int size) {
         this.size = size;
-        this.gameStets = new GameStets();
+        this.gameStats = new GameStats();
         this.foundWords = new ArrayList<>();
         this.board = new GridPane();
         this.picked = new boolean[size][size];
@@ -56,7 +60,7 @@ public class GridViewer {
         this.word = "";
         this.GridButtons();
         this.allFalse();
-        this.stats = new GameStets();
+        this.stats = new GameStats();
 
         //Initialize boggle to get all valid words
         this.boggle = new Boggle();
@@ -146,22 +150,36 @@ public class GridViewer {
      */
 
     public void addButtons(BorderPane pane) {
+
         Button checkButton = new Button("Check Word"); //button that check the word.
         checkButton.setOnAction(e -> {
+
+            System.out.println("check word button clicked");
             this.checkWord();
             this.board.requestFocus();
             e.consume();
         });
         Button clearButton = new Button("Clear"); //button that clear the board
         clearButton.setOnAction(e -> {
+            System.out.println("clear button cleared");
             this.clearWord();
             this.board.requestFocus();
             e.consume();
         });
-        pane.setRight(checkButton);
-        pane.setLeft(clearButton);
+        Button newGameButton = new Button("New Round"); //button that restart the game
+        newGameButton.setOnAction(e -> {
+            System.out.println("newGame button clicked");
+            this.newRound();
+            this.board.requestFocus();
+            e.consume();
+        });
+        VBox buttons =  new VBox(Datas.verticalSpacing);
+        buttons.getChildren().addAll(checkButton, clearButton, newGameButton);
+        pane.setRight(buttons);
 
         VBox vbox = new VBox(Datas.verticalSpacing);
+        this.highestLabel = new Label(("Heighest score: 0"));
+        this.highestLabel.setFont(Datas.fontSize);
         this.scoreLabel = new Label("Score: 0");
         this.scoreLabel.setFont(Datas.fontSize);
         this.wordLabel = new Label("Current Word: ");
@@ -169,7 +187,7 @@ public class GridViewer {
         this.messageLabel = new Label("GOOD LUCK!");
         this.scoreLabel.setFont(Datas.fontSize);
 
-        vbox.getChildren().addAll(this.scoreLabel, this.messageLabel, this.wordLabel);
+        vbox.getChildren().addAll(this.highestLabel, this.scoreLabel, this.messageLabel, this.wordLabel);
         pane.setCenter(vbox);
 
     }
@@ -200,7 +218,7 @@ public class GridViewer {
         this.foundWords.add(this.word);
         this.messageLabel.setText("You found: "+ this.word + " !!!");
         this.messageLabel.setFont(Datas.fontSize);
-        this.stats.addWord(this.word, GameStets.Player.Human);
+        this.stats.addWord(this.word, GameStats.Player.Human);
         this.scoreLabel.setText("Score: " + this.stats.getScore());
         clearWord();
     }
@@ -229,6 +247,11 @@ public class GridViewer {
         this.wordLabel.setText("Current Word: " + word.toLowerCase());
     }
 
+
+    private void newRound() {
+        gameStats.endRound();
+
+    }
     /**
      * reset the picked position.
      */

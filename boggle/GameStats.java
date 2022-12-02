@@ -7,7 +7,7 @@ import java.util.Set;
  * The BoggleStats class for the first Assignment in CSC207, Fall 2022
  * The BoggleStats will contain statsitics related to game play Boggle 
  */
-public class GameStets {
+public class GameStats {
 
     /**
      * set of words the player finds in a given round 
@@ -63,7 +63,7 @@ public class GameStets {
      * Sets round, totals and averages to 0.
      * Initializes word lists (which are sets) for computer and human players.
      */
-    public GameStets() {
+    public GameStats() {
         this.round = 0;
         this.pScoreTotal = 0;
         this.cScoreTotal = 0;
