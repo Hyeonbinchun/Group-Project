@@ -34,6 +34,9 @@ public class GameViewer {
 
     }
 
+    public void newRound(int size) {
+
+    }
     /**
      * getter of the viewer height
      * @return ViewerHeight
