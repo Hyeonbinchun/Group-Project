@@ -169,7 +169,9 @@ public class GridViewer {
         Button newGameButton = new Button("New Round"); //button that restart the game
         newGameButton.setOnAction(e -> {
             System.out.println("newGame button clicked");
+            System.out.println("check0" + this.stats.getScore());
             this.newRound();
+            this.scoreLabel.setText("Score: 0" );
             this.board.requestFocus();
             e.consume();
         });
@@ -220,8 +222,11 @@ public class GridViewer {
         this.messageLabel.setFont(Datas.fontSize);
         this.stats.addWord(this.word, GameStats.Player.Human);
         this.scoreLabel.setText("Score: " + this.stats.getScore());
+        if(this.stats.getScore() >= this.stats.getHighest()){
+            this.highestLabel.setText("Highest score: " + this.stats.getHighest());}
         clearWord();
     }
+
 
     /**
      * Clear all letters that select
@@ -249,8 +254,7 @@ public class GridViewer {
 
 
     private void newRound() {
-        gameStats.endRound();
-
+        this.gameStats.endRound();
     }
     /**
      * reset the picked position.
