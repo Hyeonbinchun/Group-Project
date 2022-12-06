@@ -193,6 +193,7 @@ public class GridViewer {
 
     }
 
+
     /**
      * Check if word is valid and make update
      */

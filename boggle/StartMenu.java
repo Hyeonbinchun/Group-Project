@@ -14,6 +14,7 @@ public class StartMenu {
     private VBox lines;
     private Stage StartMenu;
 
+
     private int[] gridSize = {5, 4}; // The size of the grid available here, you can adjust size here.
 
 

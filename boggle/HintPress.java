@@ -6,6 +6,7 @@ public class HintPress implements Command{
         theButton = button;
     }
 
+
     @Override
     public void execute() {
         theButton.press();

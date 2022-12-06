@@ -53,7 +53,6 @@ public class GameStats {
      */
     private ArrayList<Integer> highestscore;
 
-
     /**
      * enumarable types of players (human or computer)
      */  

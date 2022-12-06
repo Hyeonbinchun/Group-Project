@@ -9,7 +9,6 @@ public class Boggle {
     //change path!!
     Dictionary boggleDict = new Dictionary("C:\\Users\\천현빈\\Documents\\GitHub\\Group-Project\\boggle\\wordlist.txt");
 
-
     private static char[][] letterBoard;
     private Map<String, ArrayList<Position>> allWords = new HashMap<String, ArrayList<Position>>();
 

@@ -6,6 +6,7 @@ public class Hint implements ButtonObject{
         gridviewer = gridviewer1;
     }
 
+
     @Override
     public void press() {
         gridviewer.hint();
