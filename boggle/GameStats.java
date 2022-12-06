@@ -49,9 +49,9 @@ public class GameStats {
     private int round;
 
     /**
-     * the list of player's score to find highestscore
+     * the highest score
      */
-    private ArrayList<Integer> highestscore;
+    private int highest;
 
     /**
      * enumarable types of players (human or computer)
@@ -71,7 +71,7 @@ public class GameStats {
      * Initializes word lists (which are sets) for computer and human players.
      */
     public GameStats() {
-        this.highestscore = new ArrayList<>();
+        this.highest = 0;
 
         this.round = 0;
         this.pScoreTotal = 0;
@@ -83,6 +83,9 @@ public class GameStats {
         this.playerWords = new HashSet<String>();
         this.computerWords = new HashSet<String>();
     }
+
+
+
 
     /* 
      * Add a word to a given player's word list for the current round.
@@ -96,6 +99,9 @@ public class GameStats {
             case Human:
                 this.playerWords.add(word);
                 this.pScore += word.length() - 3;
+                if(this.getScore() >= this.getHighest()){
+                    this.highest = this.getScore();
+                }
                 break;
             case Computer:
                 this.computerWords.add(word);
@@ -184,10 +190,7 @@ public class GameStats {
     public int getScore() {
         return this.pScore;
     }
+    public int getHighest() {return this.highest;}
 
-    /*
-     * @return int the highest score
-     */
-    public  int maxscore(){return Collections.max(this.highestscore);}
 
 }

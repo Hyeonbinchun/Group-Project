@@ -177,7 +177,10 @@ public class GridViewer {
         });
         Button newGameButton = new Button("New Round"); //button that restart the game
         newGameButton.setOnAction(e -> {
-            newRound();
+            this.newRound();
+            this.scoreLabel.setText("Score: 0" );
+            this.board.requestFocus();
+          
             e.consume();
         });
         VBox buttons =  new VBox(Datas.verticalSpacing);
@@ -228,8 +231,11 @@ public class GridViewer {
         this.messageLabel.setFont(Datas.fontSize);
         this.stats.addWord(this.word, GameStats.Player.Human);
         this.scoreLabel.setText("Score: " + this.stats.getScore());
+        if(this.stats.getScore() >= this.stats.getHighest()){
+            this.highestLabel.setText("Highest score: " + this.stats.getHighest());}
         clearWord();
     }
+
 
     /**
      * Clear all letters that select
@@ -246,6 +252,7 @@ public class GridViewer {
 
     }
 
+
     /**
      * add letter at selected position to word.
      * @param position
@@ -257,12 +264,11 @@ public class GridViewer {
 
 
     private void newRound() {
-        //gameStats.endRound();
+        this.gameStats.endRound();
         clearWord();
         this.board.getChildren().clear();
         this.letterBoard = Boggle.initalizeBoard(this.size);
         this.boggle = new Boggle();
-        System.out.println(this.boggle.getValidWords().toString());
         this.GridButtons();
         this.allFalse();
 

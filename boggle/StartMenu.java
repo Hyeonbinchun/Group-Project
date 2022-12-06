@@ -20,6 +20,7 @@ public class StartMenu {
     /*
      * Showing the start menu, choose the board size.
      */
+
     public StartMenu(Stage stage) {
         this.StartMenu = stage;
         lines = new VBox(Datas.verticalSpacing); //Set vertical box spacing
