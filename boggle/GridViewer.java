@@ -31,7 +31,6 @@ public class GridViewer {
     private final GridPane board;
     private final boolean[][] picked;
     private char[][] letterBoard;
-    private GameStats gameStats;
     private ArrayList<Position> pickedPosition;
     private Label highestLabel;
     private Label wordLabel;
@@ -51,7 +50,7 @@ public class GridViewer {
      */
     public GridViewer(int size) {
         this.size = size;
-        this.gameStats = new GameStats();
+        this.stats = new GameStats();
         this.foundWords = new ArrayList<>();
         this.board = new GridPane();
         this.picked = new boolean[size][size];
@@ -259,8 +258,8 @@ public class GridViewer {
 
 
     private void newRound() {
-        this.gameStats.endRound();
-        scoreLabel.setText("Score: " + this.gameStats.getScore());
+        this.stats.endRound();
+        scoreLabel.setText("Score: " + this.stats.getScore());
         clearWord();
         this.board.getChildren().clear();
         this.letterBoard = Boggle.initalizeBoard(this.size);
