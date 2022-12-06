@@ -15,6 +15,7 @@ public class Position {
      */    
     private int col;
 
+
     /**
      * A grid Position.
      * Sets row and column to 0, by default

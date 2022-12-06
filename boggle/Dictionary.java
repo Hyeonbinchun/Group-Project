@@ -45,6 +45,7 @@ public class Dictionary {
         System.out.println("Initialized " + wordcount + " words in the Dictionary.");;
     }
 
+
     /*
      * Create a Dictionary with provided TreeSet<String> l
      */

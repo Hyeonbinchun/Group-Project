@@ -16,6 +16,7 @@ public class BoggleApp extends Application {
         launch(args);
     }
 
+
     /*
      * Show the start Menu
      */

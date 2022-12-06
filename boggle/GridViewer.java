@@ -243,6 +243,7 @@ public class GridViewer {
 
     }
 
+
     /**
      * add letter at selected position to word.
      * @param position

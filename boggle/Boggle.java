@@ -17,6 +17,7 @@ public class Boggle {
     }
 
 
+
     public static char[][] initalizeBoard(int size) {
         String letters = randomizeLetters(size);
         int i = 0;
