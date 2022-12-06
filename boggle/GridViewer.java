@@ -30,7 +30,7 @@ public class GridViewer {
     private final int size;
     private final GridPane board;
     private final boolean[][] picked;
-    private final char[][] letterBoard;
+    private char[][] letterBoard;
     private GameStats gameStats;
     private ArrayList<Position> pickedPosition;
     private Label highestLabel;
@@ -95,6 +95,35 @@ public class GridViewer {
 
     }
 
+    private void newGrid(){
+        this.board.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->{
+            Node clicked = e.getPickResult().getIntersectedNode();
+            int row = GridPane.getRowIndex(clicked);
+            int col = GridPane.getColumnIndex(clicked);
+            Position current = new Position(row, col);
+            if(this.pickedPosition.size() == 0) {
+                if (!this.picked[row][col] && !current.inside(this.pickedPosition)) {
+                    ((Rectangle) clicked).setStroke(Datas.strokeColor);
+                    this.picked[row][col] = true;
+                    this.pickedPosition.add(current);
+                    this.addLetter(current);
+                }
+            } else {
+                lastPicked = this.pickedPosition.get(this.pickedPosition.size() - 1);
+                if (!this.picked[row][col] && !current.inside(this.pickedPosition) &&
+                        current.inside(valid(lastPicked))) {
+                    ((Rectangle) clicked).setStroke(Datas.strokeColor);
+                    this.picked[row][col] = true;
+                    this.pickedPosition.add(current);
+                    this.addLetter(current);
+
+                }
+            }
+
+            e.consume();
+        });
+    }
+
     private ArrayList<Position> valid(Position curr) {
         ArrayList<Integer> d = new ArrayList<>(Arrays.asList(-1, 0, 1));
         ArrayList<Position> direction = new ArrayList<>();
@@ -121,8 +150,9 @@ public class GridViewer {
         for (int i = 0; i < this.size; i++) {
             for (int j = 0; j < this.size; j++) {
                 Label letter = new Label();
+                letter.setText("");
                 letter.setText(String.valueOf(letterBoard[i][j]));
-                letter.setFont(new Font("Arial", 30));
+                letter.setFont(new Font("Arial", 40));
                 letter.setTextFill(Datas.textColor);
 
                 Rectangle box = new Rectangle(130, 130, Color.TRANSPARENT);
@@ -251,7 +281,14 @@ public class GridViewer {
 
 
     private void newRound() {
-        gameStats.endRound();
+        //gameStats.endRound();
+        clearWord();
+        this.board.getChildren().clear();
+        this.letterBoard = Boggle.initalizeBoard(this.size);
+        this.boggle = new Boggle();
+        System.out.println(this.boggle.getValidWords().toString());
+        this.GridButtons();
+        this.allFalse();
 
     }
     /**
