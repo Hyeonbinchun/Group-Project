@@ -30,7 +30,7 @@ public class GridViewer {
     private final int size;
     private final GridPane board;
     private final boolean[][] picked;
-    private final char[][] letterBoard;
+    private char[][] letterBoard;
     private GameStats gameStats;
     private ArrayList<Position> pickedPosition;
     private Label highestLabel;
@@ -96,6 +96,35 @@ public class GridViewer {
 
     }
 
+    private void newGrid(){
+        this.board.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->{
+            Node clicked = e.getPickResult().getIntersectedNode();
+            int row = GridPane.getRowIndex(clicked);
+            int col = GridPane.getColumnIndex(clicked);
+            Position current = new Position(row, col);
+            if(this.pickedPosition.size() == 0) {
+                if (!this.picked[row][col] && !current.inside(this.pickedPosition)) {
+                    ((Rectangle) clicked).setStroke(Datas.strokeColor);
+                    this.picked[row][col] = true;
+                    this.pickedPosition.add(current);
+                    this.addLetter(current);
+                }
+            } else {
+                lastPicked = this.pickedPosition.get(this.pickedPosition.size() - 1);
+                if (!this.picked[row][col] && !current.inside(this.pickedPosition) &&
+                        current.inside(valid(lastPicked))) {
+                    ((Rectangle) clicked).setStroke(Datas.strokeColor);
+                    this.picked[row][col] = true;
+                    this.pickedPosition.add(current);
+                    this.addLetter(current);
+
+                }
+            }
+
+            e.consume();
+        });
+    }
+
     private ArrayList<Position> valid(Position curr) {
         ArrayList<Integer> d = new ArrayList<>(Arrays.asList(-1, 0, 1));
         ArrayList<Position> direction = new ArrayList<>();
@@ -122,6 +151,7 @@ public class GridViewer {
         for (int i = 0; i < this.size; i++) {
             for (int j = 0; j < this.size; j++) {
                 Label letter = new Label();
+                letter.setText("");
                 letter.setText(String.valueOf(letterBoard[i][j]));
                 letter.setFont(Datas.fontSize);
                 letter.setTextFill(Datas.textColor);
@@ -167,15 +197,24 @@ public class GridViewer {
             this.board.requestFocus();
             e.consume();
         });
-        Button newGameButton = new Button("New Round"); //button that restart the game
-        newGameButton.setOnAction(e -> {
-            System.out.println("newGame button clicked");
-            this.newRound();
+        Button hintButton = new Button("Hint"); //button that restart the game
+        hintButton.setOnAction(e -> {
+            System.out.println("Hint button clicked");
+            Hint hint = new Hint(this);
+            hint.press();
             this.board.requestFocus();
             e.consume();
         });
+        Button newGameButton = new Button("New Round"); //button that restart the game
+        newGameButton.setOnAction(e -> {
+            this.newRound();
+            this.scoreLabel.setText("Score: 0" );
+            this.board.requestFocus();
+          
+            e.consume();
+        });
         VBox buttons =  new VBox(Datas.verticalSpacing);
-        buttons.getChildren().addAll(checkButton, clearButton, newGameButton);
+        buttons.getChildren().addAll(checkButton, clearButton, hintButton, newGameButton);
         pane.setRight(buttons);
 
         VBox vbox = new VBox(Datas.verticalSpacing);
@@ -192,6 +231,7 @@ public class GridViewer {
         pane.setCenter(vbox);
 
     }
+
 
     /**
      * Check if word is valid and make update
@@ -221,8 +261,11 @@ public class GridViewer {
         this.messageLabel.setFont(Datas.fontSize);
         this.stats.addWord(this.word, GameStats.Player.Human);
         this.scoreLabel.setText("Score: " + this.stats.getScore());
+        if(this.stats.getScore() >= this.stats.getHighest()){
+            this.highestLabel.setText("Highest score: " + this.stats.getHighest());}
         clearWord();
     }
+
 
     /**
      * Clear all letters that select
@@ -239,6 +282,7 @@ public class GridViewer {
 
     }
 
+
     /**
      * add letter at selected position to word.
      * @param position
@@ -250,7 +294,13 @@ public class GridViewer {
 
 
     private void newRound() {
-        gameStats.endRound();
+        this.gameStats.endRound();
+        clearWord();
+        this.board.getChildren().clear();
+        this.letterBoard = Boggle.initalizeBoard(this.size);
+        this.boggle = new Boggle();
+        this.GridButtons();
+        this.allFalse();
 
     }
     /**
@@ -264,6 +314,32 @@ public class GridViewer {
         }
     }
 
+    public void hint() {
+        boolean found = false;
+        if (this.foundWords.contains(this.word)) {
+            System.out.println("found");
+            this.messageLabel.setText("You already found: " + this.word);
+            this.messageLabel.setFont(Datas.fontSize);
+            return;
+        }
+        for(String word: boggle.getValidWords()) {
+            System.out.println(this.foundWords);
+            if (word.toLowerCase().startsWith(this.word)) {
+                if (!this.foundWords.contains(word.toLowerCase())){
+                    found = true;
+                    this.messageLabel.setText("Hint: " + word);
+                    this.messageLabel.setFont(Datas.fontSize);
+                }
+
+            }
+        }
+        if (!found) {
+            this.messageLabel.setText("No word starts with: " + this.word);
+            this.messageLabel.setFont(Datas.fontSize);
+        }
+
+
+    }
     public Node getGrid() {
         return this.board;
     }

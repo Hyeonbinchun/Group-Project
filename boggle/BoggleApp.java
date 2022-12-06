@@ -9,11 +9,10 @@ import javafx.stage.Stage;
  */
 public class BoggleApp extends Application {
 
-
-
     public static void main(String[] args) {
         launch(args);
     }
+
 
     /*
      * Show the start Menu

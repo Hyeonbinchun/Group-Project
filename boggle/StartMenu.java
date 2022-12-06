@@ -10,9 +10,9 @@ import java.io.IOException;
 
 public class StartMenu {
 
-    private int BoardSize;
     private VBox lines;
     private Stage StartMenu;
+
 
     private int[] gridSize = {5, 4}; // The size of the grid available here, you can adjust size here.
 
@@ -20,6 +20,7 @@ public class StartMenu {
     /*
      * Showing the start menu, choose the board size.
      */
+
     public StartMenu(Stage stage) {
         this.StartMenu = stage;
         lines = new VBox(Datas.verticalSpacing); //Set vertical box spacing
@@ -52,7 +53,7 @@ public class StartMenu {
     }
 
     /**
-     * Called when user pick the grid size, show the Game board with size scene.
+     * Called when user pick the grid size, show the Color Menu with size scene.
      *
      */
     private void colorMenu() throws IOException {
