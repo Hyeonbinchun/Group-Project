@@ -1,10 +1,13 @@
 package boggle;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class Datas {
+
     public static final String[] dice_small_grid= //dice specifications, for small and large grids
             {"AAEEGN", "ABBJOO", "ACHOPS", "AFFKPS", "AOOTTW", "CIMOTU", "DEILRX", "DELRVY",
                     "DISTTY", "EEGHNW", "EEINSU", "EHRTVW", "EIOSST", "ELRTTY", "HIMNQU", "HLNNRZ"};
@@ -13,7 +16,7 @@ public class Datas {
             {"AAAFRS", "AAEEEE", "AAFIRS", "ADENNN", "AEEEEM", "AEEGMU", "AEGMNN", "AFIRSY",
                     "BJKQXZ", "CCNSTW", "CEIILT", "CEILPT", "CEIPST", "DDLNOR", "DDHNOT", "DHHLOR",
                     "DHLNOR", "EIIITT", "EMOTTT", "ENSSSU", "FIPRSY", "GORRVW", "HIPRRY", "NOOTUW", "OOOTTU"};
-
+    public static int boardSize;
     public static final Color textColor = Color.WHITE;
 
     public static final Color boxColor = Color.WHITE;
