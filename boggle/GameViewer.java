@@ -1,4 +1,5 @@
 package boggle;
+// This is the Singleton class
 
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -17,10 +18,12 @@ public class GameViewer {
      *
      * Set buttons here i.e hint
      */
-    public GameViewer(int size) {
+
+    private static GameViewer firstInstance = null;
+    private GameViewer(int size){
         bogglegrid = new GridViewer(size);
         ViewerWidth = 135 * size;
-        ViewerHeight = 120 +  135 * size;
+        ViewerHeight = 155 +  135 * size;
         board.setCenter(bogglegrid.getGrid());
         // buttons here
         BorderPane bottomButtons = new BorderPane();
@@ -30,11 +33,18 @@ public class GameViewer {
         bottomButtons.setBottom(button);
         button.setOnAction(e -> Platform.exit());
         BorderPane.setAlignment(button, Pos.CENTER);
-
-
-
     }
 
+    public static GameViewer getInstance(int size) {
+        if (firstInstance == null){
+            firstInstance = new GameViewer(size);
+        }
+        return firstInstance;
+    }
+
+    public void newRound(int size) {
+
+    }
     /**
      * getter of the viewer height
      * @return ViewerHeight

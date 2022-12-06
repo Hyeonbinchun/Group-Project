@@ -10,9 +10,9 @@ import java.io.IOException;
 
 public class StartMenu {
 
-    private int BoardSize;
     private VBox lines;
     private Stage StartMenu;
+
 
     private int[] gridSize = {5, 4}; // The size of the grid available here, you can adjust size here.
 
@@ -40,7 +40,7 @@ public class StartMenu {
         Button button = new Button();
         button.setText(size + " * " + size);
         button.setOnAction(e -> {
-            this.BoardSize = size;
+            Datas.boardSize = size;
             try {
                 this.startGame();
             } catch (IOException ex) {
@@ -57,10 +57,10 @@ public class StartMenu {
      *
      */
     private void startGame() throws IOException {
-        System.out.println("start game with: " + this.BoardSize);
+        System.out.println("start game with: " + Datas.boardSize);
         Stage stage = new Stage();
-        GameViewer board = new GameViewer(this.BoardSize);
-        stage.setScene(new Scene(board.getBoard(), board.getViewerWidth(), board.getViewerHeight()));
+        GameViewer boardInstance = GameViewer.getInstance(Datas.boardSize);
+        stage.setScene(new Scene(boardInstance.getBoard(), boardInstance.getViewerWidth(), boardInstance.getViewerHeight()));
         stage.setTitle("Boggle");
         stage.show();
     }

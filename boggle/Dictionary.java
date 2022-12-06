@@ -1,5 +1,4 @@
 package boggle;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -44,8 +43,6 @@ public class Dictionary {
         }
         System.out.println("Initialized " + wordcount + " words in the Dictionary.");;
     }
-
-
     /*
      * Create a Dictionary with provided TreeSet<String> l
      */

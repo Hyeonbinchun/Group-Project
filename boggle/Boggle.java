@@ -49,11 +49,18 @@ public class Boggle {
     private static String randomizeLetters(int size){
         String random_letter = "";
         String[] letters = new String[0];
+        /*
         if (size == 4) {
             letters = shuffle(Datas.dice_small_grid);
         } else if (size == 5) {
             letters =  shuffle(Datas.dice_big_grid);
         }
+        */
+        Dice dice = new Dice();
+        System.out.println(dice.getDice());
+        Iterator<String> diceCollection = dice.getIterator();
+        letters = shuffle(diceCollection);
+
         //System.out.println(letters);
         for (int row=0; row < letters.length; row++) {
                 random_letter += letters[row];
@@ -67,20 +74,22 @@ public class Boggle {
      * @return a shuffled dice.
      *
      */
-    private static String[] shuffle(String[] dice) {
-        String[] d = dice;
+    private static String[] shuffle(Iterator<String> dice) {
+        String[] shuffledDice = new String[Datas.boardSize * Datas.boardSize];
         Random rand = new Random();
-        for (int row=0; row < d.length; row++) {
-            for (int col=0; col < d[0].length(); col++) {
-                int ran_row = rand.nextInt(d.length);
-                int ran_col = rand.nextInt(d[0].length());
-                String saved = d[ran_row].substring(ran_col,ran_col+1);
-                String curr = d[row].substring(col,col+1);
-                d[row] = d[row].substring(0,col) + saved + d[row].substring(col+1);
-                d[ran_row] = d[ran_row].substring(0,ran_col) + curr + d[ran_row].substring(ran_col+1);
+        int curr = 0;
+        while (dice.hasNext()) {
+            String temp = "";
+            String str = dice.next();
+            System.out.println(str);
+            for (int i = 0; i < str.length(); i ++) {
+                temp += str.charAt(rand.nextInt(str.length()));
             }
+            System.out.println(temp);
+            shuffledDice[curr] = temp;
+            curr++;
         }
-        return d;
+        return shuffledDice;
     }
 
     /* 
@@ -88,26 +97,6 @@ public class Boggle {
      * Every word should be valid (i.e. in the boggleDict) and of length 4 or more.
      * Words that are found should be entered into the allWords HashMap.  This HashMap
      * will be consulted as we play the game.
-     *
-     * Note that this function will be a recursive function.  You may want to write
-     * a wrapper for your recursion. Note that every legal word on the Boggle grid will correspond to
-     * a list of grid positions on the board, and that the Position class can be used to represent these
-     * positions. The strategy you will likely want to use when you write your recursion is as follows:
-     * -- At every Position on the grid:
-     * ---- add the Position of that point to a list of stored positions
-     * ---- if your list of stored positions is >= 4, add the corresponding word to the allWords Map
-     * ---- recursively search for valid, adjacent grid Positions to add to your list of stored positions.
-     * ---- Note that a valid Position to add to your list will be one that is either horizontal, diagonal, or
-     *      vertically touching the current Position
-     * ---- Note also that a valid Position to add to your list will be one that, in conjunction with those
-     *      Positions that precede it, form a legal PREFIX to a word in the Dictionary (this is important!)
-     * ---- Use the "isPrefix" method in the Dictionary class to help you out here!!
-     * ---- Positions that already exist in your list of stored positions will also be invalid.
-     * ---- You'll be finished when you have checked EVERY possible list of Positions on the board, to see
-     *      if they can be used to form a valid word in the dictionary.
-     * ---- Food for thought: If there are N Positions on the grid, how many possible lists of positions
-     *      might we need to evaluate?
-     *
      * @param allWords A mutable list of all legal words that can be found, given the boggleGrid grid letters
      * @param boggleDict A dictionary of legal words
      * @param boggleGrid A boggle grid, with a letter at each position on the grid
@@ -217,6 +206,9 @@ public class Boggle {
 
         return validWords;
     }
+
+
+
 
 
 }

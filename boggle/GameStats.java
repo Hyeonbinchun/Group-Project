@@ -53,8 +53,6 @@ public class GameStats {
      */
     private int highest;
 
-
-
     /**
      * enumarable types of players (human or computer)
      */  
@@ -121,6 +119,8 @@ public class GameStats {
      * Finally, increment the current round number by 1.
      */
     public void endRound() {
+        this.highestscore.add(this.pScore);
+
         this.round += 1;
         this.pScoreTotal += this.pScore;
         this.cScoreTotal += this.cScore;
@@ -190,7 +190,7 @@ public class GameStats {
     public int getScore() {
         return this.pScore;
     }
-
     public int getHighest() {return this.highest;}
+
 
 }
