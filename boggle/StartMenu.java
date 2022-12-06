@@ -57,8 +57,9 @@ public class StartMenu {
     private void startGame() throws IOException {
         System.out.println("start game with: " + Datas.boardSize);
         Stage stage = new Stage();
-        GameViewer board = new GameViewer(Datas.boardSize);
-        stage.setScene(new Scene(board.getBoard(), board.getViewerWidth(), board.getViewerHeight()));
+        singleton_refactoring_of_GameViewer
+        GameViewer boardInstance = GameViewer.getInstance(this.BoardSize);
+        stage.setScene(new Scene(boardInstance.getBoard(), boardInstance.getViewerWidth(), boardInstance.getViewerHeight()));
         stage.setTitle("Boggle");
         stage.show();
     }
