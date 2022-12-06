@@ -259,7 +259,6 @@ public class GridViewer {
 
     private void newRound() {
         this.stats.endRound();
-        scoreLabel.setText("Score: " + this.stats.getScore());
         clearWord();
         this.board.getChildren().clear();
         this.letterBoard = Boggle.initalizeBoard(this.size);

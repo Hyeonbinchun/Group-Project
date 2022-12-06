@@ -53,18 +53,6 @@ public class GameStats {
      */
     private int highest;
 
-    /**
-     * enumarable types of players (human or computer)
-     */  
-    public enum Player {
-        Human("Human"),
-        Computer("Computer");
-        private final String player;
-        Player(final String player) {
-            this.player = player;
-        }
-    }
-
     /* BoggleStats constructor
      * ----------------------
      * Sets round, totals and averages to 0.
@@ -72,7 +60,6 @@ public class GameStats {
      */
     public GameStats() {
         this.highest = 0;
-
         this.round = 0;
         this.pScoreTotal = 0;
         this.cScoreTotal = 0;
@@ -97,8 +84,6 @@ public class GameStats {
     public void addWord(String word) {
         this.playerWords.add(word);
         this.pScore += word.length() - 3;
-        System.out.println("this word score: " + (word.length() - 3));
-        System.out.println("Current pscore " + this.getScore());
         if(this.getScore() > this.highest){
             this.highest = this.getScore();
         }
