@@ -10,7 +10,6 @@ import java.io.IOException;
 
 public class StartMenu {
 
-    private int BoardSize;
     private VBox lines;
     private Stage StartMenu;
 
@@ -39,7 +38,7 @@ public class StartMenu {
         Button button = new Button();
         button.setText(size + " * " + size);
         button.setOnAction(e -> {
-            this.BoardSize = size;
+            Datas.boardSize = size;
             try {
                 this.startGame();
             } catch (IOException ex) {
@@ -56,9 +55,9 @@ public class StartMenu {
      *
      */
     private void startGame() throws IOException {
-        System.out.println("start game with: " + this.BoardSize);
+        System.out.println("start game with: " + Datas.boardSize);
         Stage stage = new Stage();
-        GameViewer board = new GameViewer(this.BoardSize);
+        GameViewer board = new GameViewer(Datas.boardSize);
         stage.setScene(new Scene(board.getBoard(), board.getViewerWidth(), board.getViewerHeight()));
         stage.setTitle("Boggle");
         stage.show();
