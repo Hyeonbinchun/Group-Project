@@ -23,7 +23,7 @@ public class GameViewer {
     private GameViewer(int size){
         bogglegrid = new GridViewer(size);
         ViewerWidth = 135 * size;
-        ViewerHeight = 120 +  135 * size;
+        ViewerHeight = 155 +  135 * size;
         board.setCenter(bogglegrid.getGrid());
         // buttons here
         BorderPane bottomButtons = new BorderPane();

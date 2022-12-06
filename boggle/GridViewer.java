@@ -95,35 +95,6 @@ public class GridViewer {
 
     }
 
-    private void newGrid(){
-        this.board.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->{
-            Node clicked = e.getPickResult().getIntersectedNode();
-            int row = GridPane.getRowIndex(clicked);
-            int col = GridPane.getColumnIndex(clicked);
-            Position current = new Position(row, col);
-            if(this.pickedPosition.size() == 0) {
-                if (!this.picked[row][col] && !current.inside(this.pickedPosition)) {
-                    ((Rectangle) clicked).setStroke(Datas.strokeColor);
-                    this.picked[row][col] = true;
-                    this.pickedPosition.add(current);
-                    this.addLetter(current);
-                }
-            } else {
-                lastPicked = this.pickedPosition.get(this.pickedPosition.size() - 1);
-                if (!this.picked[row][col] && !current.inside(this.pickedPosition) &&
-                        current.inside(valid(lastPicked))) {
-                    ((Rectangle) clicked).setStroke(Datas.strokeColor);
-                    this.picked[row][col] = true;
-                    this.pickedPosition.add(current);
-                    this.addLetter(current);
-
-                }
-            }
-
-            e.consume();
-        });
-    }
-
     private ArrayList<Position> valid(Position curr) {
         ArrayList<Integer> d = new ArrayList<>(Arrays.asList(-1, 0, 1));
         ArrayList<Position> direction = new ArrayList<>();
@@ -196,16 +167,21 @@ public class GridViewer {
             this.board.requestFocus();
             e.consume();
         });
-        Button newGameButton = new Button("Hint"); //button that restart the game
-        newGameButton.setOnAction(e -> {
-            System.out.println("newGame button clicked");
-            Hint hintButton = new Hint(this);
-            hintButton.press();
+        Button hintButton = new Button("Hint"); //button that restart the game
+        hintButton.setOnAction(e -> {
+            System.out.println("Hint button clicked");
+            Hint hint = new Hint(this);
+            hint.press();
             this.board.requestFocus();
             e.consume();
         });
+        Button newGameButton = new Button("New Round"); //button that restart the game
+        newGameButton.setOnAction(e -> {
+            newRound();
+            e.consume();
+        });
         VBox buttons =  new VBox(Datas.verticalSpacing);
-        buttons.getChildren().addAll(checkButton, clearButton, newGameButton);
+        buttons.getChildren().addAll(checkButton, clearButton, hintButton, newGameButton);
         pane.setRight(buttons);
 
         VBox vbox = new VBox(Datas.verticalSpacing);
