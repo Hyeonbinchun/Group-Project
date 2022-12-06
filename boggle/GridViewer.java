@@ -196,10 +196,11 @@ public class GridViewer {
             this.board.requestFocus();
             e.consume();
         });
-        Button newGameButton = new Button("New Round"); //button that restart the game
+        Button newGameButton = new Button("Hint"); //button that restart the game
         newGameButton.setOnAction(e -> {
             System.out.println("newGame button clicked");
-            this.newRound();
+            Hint hintButton = new Hint(this);
+            hintButton.press();
             this.board.requestFocus();
             e.consume();
         });
@@ -221,6 +222,7 @@ public class GridViewer {
         pane.setCenter(vbox);
 
     }
+
 
     /**
      * Check if word is valid and make update
@@ -300,6 +302,32 @@ public class GridViewer {
         }
     }
 
+    public void hint() {
+        boolean found = false;
+        if (this.foundWords.contains(this.word)) {
+            System.out.println("found");
+            this.messageLabel.setText("You already found: " + this.word);
+            this.messageLabel.setFont(Datas.fontSize);
+            return;
+        }
+        for(String word: boggle.getValidWords()) {
+            System.out.println(this.foundWords);
+            if (word.toLowerCase().startsWith(this.word)) {
+                if (!this.foundWords.contains(word.toLowerCase())){
+                    found = true;
+                    this.messageLabel.setText("Hint: " + word);
+                    this.messageLabel.setFont(Datas.fontSize);
+                }
+
+            }
+        }
+        if (!found) {
+            this.messageLabel.setText("No word starts with: " + this.word);
+            this.messageLabel.setFont(Datas.fontSize);
+        }
+
+
+    }
     public Node getGrid() {
         return this.board;
     }

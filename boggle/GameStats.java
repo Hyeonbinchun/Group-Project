@@ -1,5 +1,7 @@
 package boggle;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -44,7 +46,12 @@ public class GameStats {
     /**
      * the current round being played
      */  
-    private int round; 
+    private int round;
+
+    /**
+     * the list of player's score to find highestscore
+     */
+    private ArrayList<Integer> highestscore;
 
     /**
      * enumarable types of players (human or computer)
@@ -64,6 +71,8 @@ public class GameStats {
      * Initializes word lists (which are sets) for computer and human players.
      */
     public GameStats() {
+        this.highestscore = new ArrayList<>();
+
         this.round = 0;
         this.pScoreTotal = 0;
         this.cScoreTotal = 0;
@@ -104,6 +113,8 @@ public class GameStats {
      * Finally, increment the current round number by 1.
      */
     public void endRound() {
+        this.highestscore.add(this.pScore);
+
         this.round += 1;
         this.pScoreTotal += this.pScore;
         this.cScoreTotal += this.cScore;
@@ -173,5 +184,10 @@ public class GameStats {
     public int getScore() {
         return this.pScore;
     }
+
+    /*
+     * @return int the highest score
+     */
+    public  int maxscore(){return Collections.max(this.highestscore);}
 
 }

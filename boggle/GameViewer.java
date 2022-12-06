@@ -13,6 +13,7 @@ public class GameViewer {
     private BorderPane board = new BorderPane();
     private GridViewer bogglegrid;
 
+
     /**
      *
      * Set buttons here i.e hint
