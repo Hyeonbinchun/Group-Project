@@ -24,10 +24,12 @@ public class Datas {
 
     public static final Color boxColor = Color.WHITE;
 
-    public static final Color strokeColor = Color.YELLOW;
+    public static Color strokeColor = Color.YELLOW;
 
-    public static int verticalSpacing = 10;
 
     public static Font fontSize = new Font("Arial", 15);
 
+    public static double MenuWidth= 200 ;
+    public static String boardColor = "-fx-background-color: ";
+    public static int MenuHeight = 250;
 }

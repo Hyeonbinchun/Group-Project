@@ -82,7 +82,7 @@ public class ColorMenu {
     private void startGame() throws IOException {
         System.out.println("start game with: " + Datas.boardSize);
         Stage stage = new Stage();
-        GameViewer board = new GameViewer(Datas.boardSize);
+        GameViewer board = GameViewer.getInstance(Datas.boardSize);
         stage.setScene(new Scene(board.getBoard(), board.getViewerWidth(), board.getViewerHeight()));
         stage.setTitle("Boggle");
         stage.show();

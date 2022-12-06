@@ -94,21 +94,14 @@ public class GameStats {
      * @param word     The word to be added to the list
      * @param player  The player to whom the word was awarded
      */
-    public void addWord(String word, Player player) {
-        switch (player) {
-            case Human:
-                this.playerWords.add(word);
-                this.pScore += word.length() - 3;
-                if(this.getScore() >= this.getHighest()){
-                    this.highest = this.getScore();
-                }
-                break;
-            case Computer:
-                this.computerWords.add(word);
-                this.cScore += word.length() - 3;
-                break;
+    public void addWord(String word) {
+        this.playerWords.add(word);
+        this.pScore += word.length() - 3;
+        System.out.println("this word score: " + (word.length() - 3));
+        System.out.println("Current pscore " + this.getScore());
+        if(this.getScore() > this.highest){
+            this.highest = this.getScore();
         }
-
     }
 
     /* 
@@ -119,8 +112,9 @@ public class GameStats {
      * Finally, increment the current round number by 1.
      */
     public void endRound() {
-        this.highestscore.add(this.pScore);
 
+        System.out.println("Current pscore: "+ this.getScore());
+        System.out.println("Highest: " + this.getHighest());
         this.round += 1;
         this.pScoreTotal += this.pScore;
         this.cScoreTotal += this.cScore;

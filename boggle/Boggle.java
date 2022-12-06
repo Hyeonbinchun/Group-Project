@@ -7,7 +7,7 @@ import java.util.*;
  */
 public class Boggle {
     //change path!!
-    Dictionary boggleDict = new Dictionary("/Users/alexho/Documents/GitHub/Group-Project/boggle/wordlist.txt");
+    Dictionary boggleDict = new Dictionary("/Users/a1660453695/Desktop/git life/Group-Project/boggle/wordlist.txt");
 
     private static char[][] letterBoard;
     private Map<String, ArrayList<Position>> allWords = new HashMap<String, ArrayList<Position>>();
@@ -48,16 +48,8 @@ public class Boggle {
      */
     private static String randomizeLetters(int size){
         String random_letter = "";
-        String[] letters = new String[0];
-        /*
-        if (size == 4) {
-            letters = shuffle(Datas.dice_small_grid);
-        } else if (size == 5) {
-            letters =  shuffle(Datas.dice_big_grid);
-        }
-        */
+        String[] letters;
         Dice dice = new Dice();
-        System.out.println(dice.getDice());
         Iterator<String> diceCollection = dice.getIterator();
         letters = shuffle(diceCollection);
 
@@ -81,11 +73,9 @@ public class Boggle {
         while (dice.hasNext()) {
             String temp = "";
             String str = dice.next();
-            System.out.println(str);
             for (int i = 0; i < str.length(); i ++) {
                 temp += str.charAt(rand.nextInt(str.length()));
             }
-            System.out.println(temp);
             shuffledDice[curr] = temp;
             curr++;
         }

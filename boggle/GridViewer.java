@@ -65,7 +65,6 @@ public class GridViewer {
 
         //Initialize boggle to get all valid words
         this.boggle = new Boggle();
-        System.out.println(this.boggle.getValidWords().toString());
 
         this.board.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->{
             Node clicked = e.getPickResult().getIntersectedNode();
@@ -94,35 +93,6 @@ public class GridViewer {
             e.consume();
         });
 
-    }
-
-    private void newGrid(){
-        this.board.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->{
-            Node clicked = e.getPickResult().getIntersectedNode();
-            int row = GridPane.getRowIndex(clicked);
-            int col = GridPane.getColumnIndex(clicked);
-            Position current = new Position(row, col);
-            if(this.pickedPosition.size() == 0) {
-                if (!this.picked[row][col] && !current.inside(this.pickedPosition)) {
-                    ((Rectangle) clicked).setStroke(Datas.strokeColor);
-                    this.picked[row][col] = true;
-                    this.pickedPosition.add(current);
-                    this.addLetter(current);
-                }
-            } else {
-                lastPicked = this.pickedPosition.get(this.pickedPosition.size() - 1);
-                if (!this.picked[row][col] && !current.inside(this.pickedPosition) &&
-                        current.inside(valid(lastPicked))) {
-                    ((Rectangle) clicked).setStroke(Datas.strokeColor);
-                    this.picked[row][col] = true;
-                    this.pickedPosition.add(current);
-                    this.addLetter(current);
-
-                }
-            }
-
-            e.consume();
-        });
     }
 
     private ArrayList<Position> valid(Position curr) {
@@ -184,22 +154,18 @@ public class GridViewer {
 
         Button checkButton = new Button("Check Word"); //button that check the word.
         checkButton.setOnAction(e -> {
-
-            System.out.println("check word button clicked");
             this.checkWord();
             this.board.requestFocus();
             e.consume();
         });
         Button clearButton = new Button("Clear"); //button that clear the board
         clearButton.setOnAction(e -> {
-            System.out.println("clear button cleared");
             this.clearWord();
             this.board.requestFocus();
             e.consume();
         });
-        Button hintButton = new Button("Hint"); //button that restart the game
+        Button hintButton = new Button("Hint"); //button that make a hint
         hintButton.setOnAction(e -> {
-            System.out.println("Hint button clicked");
             Hint hint = new Hint(this);
             hint.press();
             this.board.requestFocus();
@@ -208,7 +174,6 @@ public class GridViewer {
         Button newGameButton = new Button("New Round"); //button that restart the game
         newGameButton.setOnAction(e -> {
             this.newRound();
-            this.scoreLabel.setText("Score: 0" );
             this.board.requestFocus();
           
             e.consume();
@@ -259,7 +224,7 @@ public class GridViewer {
         this.foundWords.add(this.word);
         this.messageLabel.setText("You found: "+ this.word + " !!!");
         this.messageLabel.setFont(Datas.fontSize);
-        this.stats.addWord(this.word, GameStats.Player.Human);
+        this.stats.addWord(this.word);
         this.scoreLabel.setText("Score: " + this.stats.getScore());
         if(this.stats.getScore() >= this.stats.getHighest()){
             this.highestLabel.setText("Highest score: " + this.stats.getHighest());}
@@ -295,12 +260,14 @@ public class GridViewer {
 
     private void newRound() {
         this.gameStats.endRound();
+        scoreLabel.setText("Score: " + this.gameStats.getScore());
         clearWord();
         this.board.getChildren().clear();
         this.letterBoard = Boggle.initalizeBoard(this.size);
         this.boggle = new Boggle();
         this.GridButtons();
         this.allFalse();
+        this.foundWords.clear();
 
     }
     /**
@@ -317,13 +284,11 @@ public class GridViewer {
     public void hint() {
         boolean found = false;
         if (this.foundWords.contains(this.word)) {
-            System.out.println("found");
             this.messageLabel.setText("You already found: " + this.word);
             this.messageLabel.setFont(Datas.fontSize);
             return;
         }
         for(String word: boggle.getValidWords()) {
-            System.out.println(this.foundWords);
             if (word.toLowerCase().startsWith(this.word)) {
                 if (!this.foundWords.contains(word.toLowerCase())){
                     found = true;
