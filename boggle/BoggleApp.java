@@ -9,8 +9,7 @@ import javafx.stage.Stage;
  */
 public class BoggleApp extends Application {
 
-    private int MenuHeight = 250; // set height of the menu
-    private int MenuWidth = 200; // set the width of the menu
+
 
     public static void main(String[] args) {
         launch(args);
@@ -21,7 +20,7 @@ public class BoggleApp extends Application {
      */
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setScene(new Scene(new StartMenu(primaryStage).getLines(), MenuWidth, MenuHeight));
+        primaryStage.setScene(new Scene(new StartMenu(primaryStage).getLines(), Datas.MenuWidth, Datas.MenuHeight));
         primaryStage.show();
     }
 

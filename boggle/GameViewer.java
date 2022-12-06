@@ -11,12 +11,15 @@ public class GameViewer {
     private int ViewerWidth; //Viewer width
     private BorderPane board = new BorderPane();
     private GridViewer bogglegrid;
+    private Datas datas;
 
     /**
      *
      * Set buttons here i.e hint
      */
     public GameViewer(int size) {
+        // Builder Pattern for Color
+
         bogglegrid = new GridViewer(size);
         ViewerWidth = 135 * size;
         ViewerHeight = 120 +  135 * size;
