@@ -42,7 +42,7 @@ public class StartMenu {
         button.setOnAction(e -> {
             Datas.boardSize = size;
             try {
-                this.startGame();
+                this.colorMenu();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -53,16 +53,13 @@ public class StartMenu {
     }
 
     /**
-     * Called when user pick the grid size, show the Game board with size scene.
+     * Called when user pick the grid size, show the Color Menu with size scene.
      *
      */
-    private void startGame() throws IOException {
-        System.out.println("start game with: " + Datas.boardSize);
-        Stage stage = new Stage();
-        GameViewer boardInstance = GameViewer.getInstance(Datas.boardSize);
-        stage.setScene(new Scene(boardInstance.getBoard(), boardInstance.getViewerWidth(), boardInstance.getViewerHeight()));
-        stage.setTitle("Boggle");
-        stage.show();
+    private void colorMenu() throws IOException {
+        Stage colorStage = new Stage();
+        colorStage.setScene(new Scene(new ColorMenu(colorStage).getLines(), Datas.MenuWidth, Datas.MenuHeight));
+        colorStage.show();
     }
 
     public VBox getLines() {

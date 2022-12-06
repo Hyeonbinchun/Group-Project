@@ -12,12 +12,7 @@ public class GameViewer {
     private int ViewerWidth; //Viewer width
     private BorderPane board = new BorderPane();
     private GridViewer bogglegrid;
-
-
-    /**
-     *
-     * Set buttons here i.e hint
-     */
+    private Datas datas;
 
     private static GameViewer firstInstance = null;
     private GameViewer(int size){

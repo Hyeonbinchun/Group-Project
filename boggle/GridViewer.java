@@ -44,6 +44,7 @@ public class GridViewer {
     private Boggle boggle;
     private GameStats stats;
 
+
     /**
      * BoggleGrid constructor
      * @param size size of the grid
@@ -145,14 +146,14 @@ public class GridViewer {
      * Add grid button that come up with a game board
      */
     private void GridButtons() {
-        this.board.setStyle("-fx-background-color: black");
+        this.board.setStyle(Datas.boardColor);
         this.gridBox = new ArrayList<>();
         for (int i = 0; i < this.size; i++) {
             for (int j = 0; j < this.size; j++) {
                 Label letter = new Label();
                 letter.setText("");
                 letter.setText(String.valueOf(letterBoard[i][j]));
-                letter.setFont(new Font("Arial", 40));
+                letter.setFont(Datas.fontSize);
                 letter.setTextFill(Datas.textColor);
 
                 Rectangle box = new Rectangle(130, 130, Color.TRANSPARENT);
