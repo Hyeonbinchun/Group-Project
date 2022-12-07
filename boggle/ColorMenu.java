@@ -1,6 +1,4 @@
 package boggle;
-import java.util.*;
-
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,7 +13,6 @@ import javafx.scene.paint.Color;
 
 public class ColorMenu {
 
-    private int BoardSize;
     private VBox lines;
     private Stage ColorMenu;
     private String[] colorBoxList = {"RED", "BLUE", "ORANGE"};
@@ -32,8 +29,8 @@ public class ColorMenu {
         Label describe1 = new Label("Choose the color of the grid: ");
         lines.getChildren().add(describe1);
 
-        for (int i = 0; i< colorBoxList.length; i++) {
-            this.AddButton(colorBoxList[i]);
+        for (String s : colorBoxList) {
+            this.AddButton(s);
         }
 
     }
@@ -44,7 +41,6 @@ public class ColorMenu {
         button.setOnAction(e -> {
             ColorPaletteEngineer colorPaletteEngineer = new ColorPaletteEngineer(box);
             colorPaletteEngineer.makeColorPalette();
-
             ColorPalette firstColor = colorPaletteEngineer.getColorPalette();
 
             Datas.boardColor += firstColor.getBoxColor();

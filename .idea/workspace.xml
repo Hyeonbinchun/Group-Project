@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="662a8982-8cf0-4061-853b-5648df550aa1" name="Changes" comment="I changed the builder pattern slightly so that the &quot;client&quot; ColorMenu doesn't have to use if statements but instead move those if statments to ColorPaletteEngineer.java">
+    <list default="true" id="662a8982-8cf0-4061-853b-5648df550aa1" name="Changes" comment="Deleted redundant attributes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/boggle/ColorMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/boggle/ColorMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/boggle/ColorPaletteEngineer.java" beforeDir="false" afterPath="$PROJECT_DIR$/boggle/ColorPaletteEngineer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +51,21 @@
       <option name="project" value="LOCAL" />
       <updated>1670400204988</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="changed the if statements in ColorPaletteEngineer.java to switches">
+      <created>1670400464378</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1670400464378</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Deleted redundant attributes">
+      <created>1670400514388</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1670400514388</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -65,6 +81,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="I changed the builder pattern slightly so that the &quot;client&quot; ColorMenu doesn't have to use if statements but instead move those if statments to ColorPaletteEngineer.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="I changed the builder pattern slightly so that the &quot;client&quot; ColorMenu doesn't have to use if statements but instead move those if statments to ColorPaletteEngineer.java" />
+    <MESSAGE value="changed the if statements in ColorPaletteEngineer.java to switches" />
+    <MESSAGE value="Deleted redundant attributes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted redundant attributes" />
   </component>
 </project>
