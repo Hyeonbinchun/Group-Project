@@ -4,7 +4,6 @@ package boggle;
  * BlueColorPaletteBuilder implements from ColorPaletteBuilder. It builds blue color palette
  */
 public class BlueColorPaletteBuilder implements ColorPaletteBuilder{
-
     // Create ColorPalette object
     private ColorPalette blueColorPalette;
 
