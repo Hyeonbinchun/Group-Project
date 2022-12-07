@@ -31,7 +31,6 @@ public class GridViewer {
     private final GridPane board;
     private final boolean[][] picked;
     private char[][] letterBoard;
-    private GameStats gameStats;
     private ArrayList<Position> pickedPosition;
     private Label highestLabel;
     private Label wordLabel;
@@ -52,7 +51,7 @@ public class GridViewer {
      */
     public GridViewer(int size) {
         this.size = size;
-        this.gameStats = new GameStats();
+        this.stats = new GameStats();
         this.foundWords = new ArrayList<>();
         this.board = new GridPane();
         this.picked = new boolean[size][size];
@@ -155,22 +154,18 @@ public class GridViewer {
 
         Button checkButton = new Button("Check Word"); //button that check the word.
         checkButton.setOnAction(e -> {
-
-            System.out.println("check word button clicked");
             this.checkWord();
             this.board.requestFocus();
             e.consume();
         });
         Button clearButton = new Button("Clear"); //button that clear the board
         clearButton.setOnAction(e -> {
-            System.out.println("clear button cleared");
             this.clearWord();
             this.board.requestFocus();
             e.consume();
         });
-        Button hintButton = new Button("Hint"); //button that restart the game
+        Button hintButton = new Button("Hint"); //button that make a hint
         hintButton.setOnAction(e -> {
-            System.out.println("Hint button clicked");
             Hint hint = new Hint(this);
             hint.press();
             this.board.requestFocus();
@@ -179,7 +174,6 @@ public class GridViewer {
         Button newGameButton = new Button("New Round"); //button that restart the game
         newGameButton.setOnAction(e -> {
             this.newRound();
-            this.scoreLabel.setText("Score: 0" );
             this.board.requestFocus();
           
             e.consume();
@@ -189,7 +183,9 @@ public class GridViewer {
         pane.setRight(buttons);
 
         VBox vbox = new VBox(Datas.verticalSpacing);
-        this.highestLabel = new Label(("Heighest score: 0"));
+        this.roundLabel = new Label("Round: " + (stats.getRound()+1));
+        this.roundLabel.setFont(Datas.fontSize);
+        this.highestLabel = new Label("Highest score: 0");
         this.highestLabel.setFont(Datas.fontSize);
         this.scoreLabel = new Label("Score: 0");
         this.scoreLabel.setFont(Datas.fontSize);
@@ -198,7 +194,8 @@ public class GridViewer {
         this.messageLabel = new Label("GOOD LUCK!");
         this.scoreLabel.setFont(Datas.fontSize);
 
-        vbox.getChildren().addAll(this.highestLabel, this.scoreLabel, this.messageLabel, this.wordLabel);
+        vbox.getChildren().addAll(this.roundLabel, this.highestLabel, this.scoreLabel,
+                this.messageLabel, this.wordLabel);
         pane.setCenter(vbox);
 
     }
@@ -265,7 +262,7 @@ public class GridViewer {
 
 
     private void newRound() {
-        this.gameStats.endRound();
+        this.stats.endRound();
         clearWord();
         this.board.getChildren().clear();
         this.letterBoard = Boggle.initalizeBoard(this.size);
@@ -290,13 +287,11 @@ public class GridViewer {
     public void hint() {
         boolean found = false;
         if (this.foundWords.contains(this.word)) {
-            System.out.println("found");
             this.messageLabel.setText("You already found: " + this.word);
             this.messageLabel.setFont(Datas.fontSize);
             return;
         }
         for(String word: boggle.getValidWords()) {
-            System.out.println(this.foundWords);
             if (word.toLowerCase().startsWith(this.word)) {
                 if (!this.foundWords.contains(word.toLowerCase())){
                     found = true;

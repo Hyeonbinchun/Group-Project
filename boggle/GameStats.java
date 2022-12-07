@@ -1,7 +1,5 @@
 package boggle;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,7 +36,7 @@ public class GameStats {
     /**
      * the average number of words, per round, found by the player
      */  
-    private double pAverageWords; 
+    private double pAverageWords;
     /**
      * the average number of words, per round, found by the computer
      */  
@@ -52,18 +50,6 @@ public class GameStats {
      * the highest score
      */
     private static int highest;
-
-    /**
-     * enumarable types of players (human or computer)
-     */  
-    public enum Player {
-        Human("Human"),
-        Computer("Computer");
-        private final String player;
-        Player(final String player) {
-            this.player = player;
-        }
-    }
 
     /* BoggleStats constructor
      * ----------------------
@@ -110,9 +96,6 @@ public class GameStats {
      * Finally, increment the current round number by 1.
      */
     public void endRound() {
-
-        System.out.println("Current pScore: " + this.getScore());
-        System.out.println("Highest: " + this.getScore());
         this.round += 1;
         this.cScoreTotal += this.cScore;
         this.cScore = 0;
