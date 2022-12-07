@@ -17,17 +17,20 @@ public class Datas {
                     "BJKQXZ", "CCNSTW", "CEIILT", "CEILPT", "CEIPST", "DDLNOR", "DDHNOT", "DHHLOR",
                     "DHLNOR", "EIIITT", "EMOTTT", "ENSSSU", "FIPRSY", "GORRVW", "HIPRRY", "NOOTUW", "OOOTTU"};
 
-    public static int verticalSpacing = 10;
 
+    public static double MenuWidth = 200;
+
+    public static int MenuHeight = 250;
     public static int boardSize;
     public static final Color textColor = Color.WHITE;
 
     public static final Color boxColor = Color.WHITE;
 
-    public static final Color strokeColor = Color.YELLOW;
+    public static Color strokeColor = Color.YELLOW;
 
     public static int verticalSpacing = 10;
 
     public static Font fontSize = new Font("Arial", 15);
 
+    public static String boardColor = "-fx-background-color: ";
 }
