@@ -83,7 +83,7 @@ public class ColorMenu {
         System.out.println("start game with: " + Datas.boardSize);
         Stage stage = new Stage();
         GameViewer board = GameViewer.getInstance(Datas.boardSize);
-        stage.setScene(new Scene(board.getBoard(), board.getViewerWidth(), board.getViewerHeight()));
+        stage.setScene(new Scene(board.getBoard(), (135 * Datas.boardSize), (155 +  135 * Datas.boardSize)));
         stage.setTitle("Boggle");
         stage.show();
     }

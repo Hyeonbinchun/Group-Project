@@ -9,8 +9,7 @@ import javafx.stage.Stage;
 
 public class GameViewer {
 
-    private int ViewerHeight; //Viewer height
-    private int ViewerWidth; //Viewer width
+
     private BorderPane board = new BorderPane();
     private GridViewer bogglegrid;
     private Datas datas;
@@ -18,8 +17,6 @@ public class GameViewer {
     private static GameViewer firstInstance = null;
     private GameViewer(int size){
         bogglegrid = new GridViewer(size);
-        ViewerWidth = 135 * size;
-        ViewerHeight = 155 +  135 * size;
         board.setCenter(bogglegrid.getGrid());
         // buttons here
         BorderPane bottomButtons = new BorderPane();
@@ -36,6 +33,7 @@ public class GameViewer {
     public static void resultMenu(){
         Stage resultStage = new Stage();
         resultStage.setScene(new Scene(new ResultMenu(resultStage).getLines(), Datas.MenuWidth, Datas.MenuHeight));
+        resultStage.show();
     }
 
     public static GameViewer getInstance(int size){
@@ -44,18 +42,6 @@ public class GameViewer {
         }
         return firstInstance;
     }
-    
-    /**
-     * getter of the viewer height
-     * @return ViewerHeight
-     */
-    public int getViewerHeight() {return ViewerHeight;}
-
-    /**
-     * getter of the viewer width
-     * @return ViewerWidth
-     */
-    public int getViewerWidth() {return ViewerWidth;}
 
     /**
      * getter of the boardview

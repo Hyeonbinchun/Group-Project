@@ -28,8 +28,8 @@ public class Datas {
 
     public static Color strokeColor = Color.YELLOW;
 
-
     public static Font fontSize = new Font("Arial", 15);
 
     public static String boardColor = "-fx-background-color: ";
+    public static double verticalSpacing = 10;
 }

@@ -14,10 +14,11 @@ public class ResultMenu {
     private Label highestScoreLabel;
     private Stage ResultMenu;
     private VBox lines;
+
     public ResultMenu(Stage stage) {
         this.lines = new VBox(Datas.verticalSpacing);
         this.ResultMenu = stage;
-        this.roundLabel = new Label("Round played: " + (GameStats.getRound()+1));
+        this.roundLabel = new Label("Round played: " + (GameStats.getRound() + 1));
         this.highestScoreLabel = new Label("Highest Score in a round: " + GameStats.getHighest());
         this.wordsFoundLabel = new Label("Words Found: " + GameStats.getPlayerWords().size());
         this.averageScoreLabel = new Label("Total Score: " + GameStats.getTotalScore());
@@ -29,8 +30,9 @@ public class ResultMenu {
         lines.setAlignment(Pos.CENTER);
     }
 
-public VBox getLines() {
-    return this.lines;
+    public VBox getLines() {
+        return this.lines;
+    }
+
 }
-public VBox getLines() {return this.lines;}
 
