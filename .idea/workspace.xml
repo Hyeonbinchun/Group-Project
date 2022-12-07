@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="662a8982-8cf0-4061-853b-5648df550aa1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Group-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Group-Project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/boggle/Boggle.java" beforeDir="false" afterPath="$PROJECT_DIR$/boggle/Boggle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/boggle/ColorMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/boggle/ColorMenu.java" afterDir="false" />
+    <list default="true" id="662a8982-8cf0-4061-853b-5648df550aa1" name="Changes" comment="I changed the builder pattern slightly so that the &quot;client&quot; ColorMenu doesn't have to use if statements but instead move those if statments to ColorPaletteEngineer.java">
       <change beforePath="$PROJECT_DIR$/boggle/ColorPaletteEngineer.java" beforeDir="false" afterPath="$PROJECT_DIR$/boggle/ColorPaletteEngineer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,6 +42,14 @@
       <option name="presentableId" value="Default" />
       <updated>1670382890053</updated>
     </task>
+    <task id="LOCAL-00001" summary="I changed the builder pattern slightly so that the &quot;client&quot; ColorMenu doesn't have to use if statements but instead move those if statments to ColorPaletteEngineer.java">
+      <created>1670400204988</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1670400204988</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -59,5 +62,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="I changed the builder pattern slightly so that the &quot;client&quot; ColorMenu doesn't have to use if statements but instead move those if statments to ColorPaletteEngineer.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="I changed the builder pattern slightly so that the &quot;client&quot; ColorMenu doesn't have to use if statements but instead move those if statments to ColorPaletteEngineer.java" />
   </component>
 </project>

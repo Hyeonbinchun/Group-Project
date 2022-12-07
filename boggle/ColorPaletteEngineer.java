@@ -6,12 +6,10 @@ public class ColorPaletteEngineer {
     private String type;
 
     public ColorPaletteEngineer(String colorType){
-        if (colorType.equals("BLUE")){
-            this.colorPaletteBuilder = new BlueColorPaletteBuilder();
-        } else if (colorType.equals("RED")){
-            this.colorPaletteBuilder = new RedColorPaletteBuilder();
-        } else if (colorType.equals("ORANGE")){
-            this.colorPaletteBuilder = new OrangeColorPaletteBuilder();
+        switch (colorType) {
+            case "BLUE" -> this.colorPaletteBuilder = new BlueColorPaletteBuilder();
+            case "RED" -> this.colorPaletteBuilder = new RedColorPaletteBuilder();
+            case "ORANGE" -> this.colorPaletteBuilder = new OrangeColorPaletteBuilder();
         }
 
     }
