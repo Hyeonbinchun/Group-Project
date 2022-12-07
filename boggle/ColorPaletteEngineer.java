@@ -3,7 +3,6 @@ import javafx.scene.paint.Color;
 
 public class ColorPaletteEngineer {
     private ColorPaletteBuilder colorPaletteBuilder;
-    private String type;
 
     public ColorPaletteEngineer(String colorType){
         switch (colorType) {
