@@ -19,8 +19,6 @@ public class ColorMenu {
     private VBox lines;
     private Stage ColorMenu;
     private String[] colorBoxList = {"RED", "BLUE", "ORANGE"};
-    private ColorPaletteBuilder colorPalette;
-
 
 
     /*
@@ -44,15 +42,7 @@ public class ColorMenu {
         Button button = new Button();
         button.setText(box);
         button.setOnAction(e -> {
-            // Edit to make the pattern work
-            if (box.equals("BLUE")){
-                this.colorPalette = new BlueColorPaletteBuilder();
-            } else if (box.equals("RED")){
-                this.colorPalette = new RedColorPaletteBuilder();
-            } else if (box.equals("ORANGE")){
-                this.colorPalette = new OrangeColorPaletteBuilder();
-            }
-            ColorPaletteEngineer colorPaletteEngineer = new ColorPaletteEngineer(this.colorPalette);
+            ColorPaletteEngineer colorPaletteEngineer = new ColorPaletteEngineer(box);
             colorPaletteEngineer.makeColorPalette();
 
             ColorPalette firstColor = colorPaletteEngineer.getColorPalette();
