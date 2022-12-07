@@ -1,7 +1,5 @@
 package boggle;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,7 +12,7 @@ public class GameStats {
     /**
      * set of words the player finds in a given round 
      */  
-    private Set<String> playerWords = new HashSet<String>();  
+    private static Set<String> playerWords = new HashSet<String>();
     /**
      * set of words the computer finds in a given round 
      */  
@@ -22,23 +20,23 @@ public class GameStats {
     /**
      * the player's score for the current round
      */  
-    private int pScore; 
+    private static int pScore;
     /**
      * the computer's score for the current round
      */  
-    private int cScore; 
+    private static int cScore;
     /**
      * the player's total score across every round
      */  
-    private int pScoreTotal; 
+    private static int pScoreTotal;
     /**
      * the computer's total score across every round
      */  
-    private int cScoreTotal; 
+    private static int cScoreTotal;
     /**
      * the average number of words, per round, found by the player
      */  
-    private double pAverageWords; 
+    private double pAverageWords;
     /**
      * the average number of words, per round, found by the computer
      */  
@@ -46,12 +44,12 @@ public class GameStats {
     /**
      * the current round being played
      */  
-    private int round;
+    private static int round;
 
     /**
      * the highest score
      */
-    private int highest;
+    private static int highest;
 
     /* BoggleStats constructor
      * ----------------------
@@ -81,11 +79,12 @@ public class GameStats {
      * @param word     The word to be added to the list
      * @param player  The player to whom the word was awarded
      */
-    public void addWord(String word) {
-        this.playerWords.add(word);
-        this.pScore += word.length() - 3;
-        if(this.getScore() > this.highest){
-            this.highest = this.getScore();
+    public static void addWord(String word) {
+        playerWords.add(word);
+        pScore += word.length() - 3;
+        pScoreTotal += word.length() - 3;
+        if(getScore() > highest){
+            highest = getScore();
         }
     }
 
@@ -101,7 +100,6 @@ public class GameStats {
         System.out.println("Current pscore: "+ this.getScore());
         System.out.println("Highest: " + this.getHighest());
         this.round += 1;
-        this.pScoreTotal += this.pScore;
         this.cScoreTotal += this.cScore;
         this.cScore = 0;
         this.pScore = 0;
@@ -135,20 +133,19 @@ public class GameStats {
      * The total score for either player.
      * The average number of words found by each player per round.
      */
-    public void summarizeGame() {
-        System.out.println("Game Summary:");
-        System.out.println("Rounds played:" + this.round);
-        System.out.println("Player get:" + this.pScoreTotal + " total");
-        System.out.println("Computer get:" + this.cScoreTotal + " total");
-        System.out.println("Player found " + this.pAverageWords + "average words per round");
-        System.out.println("Computer found " + this.cAverageWords + "average words per round");
+    public static String[] summarizeGame() {
+        String[] summary = new String[3];
+        summary[0] = Integer.toString(getRound());
+        summary[1] = Integer.toString(getPlayerWords().size());
+        summary[2] = Integer.toString(getTotalScore());
+        return summary;
     }
 
     /* 
      * @return Set<String> The player's word list
      */
-    public Set<String> getPlayerWords() {
-        return this.playerWords;
+    public static Set<String> getPlayerWords() {
+        return playerWords;
     }
 
     /*
@@ -161,15 +158,15 @@ public class GameStats {
     /*
      * @return int The number of rounds played
      */
-    public int getRound() { return this.round; }
+    public static int getRound() { return round; }
 
     /*
     * @return int The current player score
     */
-    public int getScore() {
-        return this.pScore;
+    public static int getScore() {
+        return pScore;
     }
-    public int getHighest() {return this.highest;}
-
+    public static int getHighest() {return highest;}
+    public static int getTotalScore(){return pScoreTotal;}
 
 }

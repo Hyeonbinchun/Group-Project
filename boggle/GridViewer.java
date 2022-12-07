@@ -36,6 +36,7 @@ public class GridViewer {
     private Label wordLabel;
     private Label scoreLabel;
     private Label messageLabel;
+    private Label roundLabel;
     private String word;
     private ArrayList<String> foundWords;
     private ArrayList<Rectangle> gridBox;
@@ -182,7 +183,9 @@ public class GridViewer {
         pane.setRight(buttons);
 
         VBox vbox = new VBox(Datas.verticalSpacing);
-        this.highestLabel = new Label(("Heighest score: 0"));
+        this.roundLabel = new Label("Round: " + (stats.getRound()+1));
+        this.roundLabel.setFont(Datas.fontSize);
+        this.highestLabel = new Label("Highest score: 0");
         this.highestLabel.setFont(Datas.fontSize);
         this.scoreLabel = new Label("Score: 0");
         this.scoreLabel.setFont(Datas.fontSize);
@@ -191,7 +194,8 @@ public class GridViewer {
         this.messageLabel = new Label("GOOD LUCK!");
         this.scoreLabel.setFont(Datas.fontSize);
 
-        vbox.getChildren().addAll(this.highestLabel, this.scoreLabel, this.messageLabel, this.wordLabel);
+        vbox.getChildren().addAll(this.roundLabel, this.highestLabel, this.scoreLabel,
+                this.messageLabel, this.wordLabel);
         pane.setCenter(vbox);
 
     }
@@ -266,6 +270,8 @@ public class GridViewer {
         this.GridButtons();
         this.allFalse();
         this.foundWords.clear();
+        this.scoreLabel.setText("Score: 0");
+        this.roundLabel.setText("Round: " + (stats.getRound()+1));
 
     }
     /**

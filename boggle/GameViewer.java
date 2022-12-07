@@ -1,10 +1,11 @@
 package boggle;
 // This is the Singleton class
 
-import javafx.application.Platform;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class GameViewer {
 
@@ -26,10 +27,17 @@ public class GameViewer {
         board.setBottom(bottomButtons);
         Button button = new Button("End Game");
         bottomButtons.setBottom(button);
-        button.setOnAction(e -> Platform.exit());
+        button.setOnAction(e -> {
+            resultMenu();
+        });
         BorderPane.setAlignment(button, Pos.CENTER);
     }
 
+    public static void resultMenu() {
+        Stage resultStage = new Stage();
+        resultStage.setScene(new Scene(new ResultMenu(resultStage).getLines(), Datas.MenuWidth, Datas.MenuHeight));
+        resultStage.show();
+    }
     public static GameViewer getInstance(int size) {
         if (firstInstance == null){
             firstInstance = new GameViewer(size);
