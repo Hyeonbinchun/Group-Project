@@ -272,7 +272,6 @@ public class GridViewer {
         this.foundWords.clear();
         this.scoreLabel.setText("Score: 0");
         this.roundLabel.setText("Round: " + (stats.getRound()+1));
-
     }
     /**
      * reset the picked position.

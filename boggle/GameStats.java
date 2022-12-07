@@ -83,7 +83,7 @@ public class GameStats {
         playerWords.add(word);
         pScore += word.length() - 3;
         pScoreTotal += word.length() - 3;
-        if(getScore() > highest){
+        if (getScore() > highest){
             highest = getScore();
         }
     }
@@ -96,9 +96,6 @@ public class GameStats {
      * Finally, increment the current round number by 1.
      */
     public void endRound() {
-
-        System.out.println("Current pscore: "+ this.getScore());
-        System.out.println("Highest: " + this.getHighest());
         this.round += 1;
         this.cScoreTotal += this.cScore;
         this.cScore = 0;

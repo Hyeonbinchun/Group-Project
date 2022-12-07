@@ -1,12 +1,11 @@
 package boggle;
 
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import javafx.application.Platform;
 
 public class ResultMenu {
     private Label roundLabel;
@@ -30,6 +29,8 @@ public class ResultMenu {
         lines.setAlignment(Pos.CENTER);
     }
 
-    public VBox getLines() {return this.lines;}
-
+public VBox getLines() {
+    return this.lines;
 }
+public VBox getLines() {return this.lines;}
+

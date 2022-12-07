@@ -33,18 +33,17 @@ public class GameViewer {
         BorderPane.setAlignment(button, Pos.CENTER);
     }
 
-    public static void resultMenu() {
+    public static void resultMenu(){
         Stage resultStage = new Stage();
         resultStage.setScene(new Scene(new ResultMenu(resultStage).getLines(), Datas.MenuWidth, Datas.MenuHeight));
-        resultStage.show();
     }
-    public static GameViewer getInstance(int size) {
+
+    public static GameViewer getInstance(int size){
         if (firstInstance == null){
             firstInstance = new GameViewer(size);
         }
         return firstInstance;
     }
-
     
     /**
      * getter of the viewer height
