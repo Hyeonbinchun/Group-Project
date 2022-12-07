@@ -123,7 +123,7 @@ public class GridViewer {
                 Label letter = new Label();
                 letter.setText("");
                 letter.setText(String.valueOf(letterBoard[i][j]));
-                letter.setFont(Datas.fontSize);
+                letter.setFont(new Font("Arial", 30));
                 letter.setTextFill(Datas.textColor);
 
                 Rectangle box = new Rectangle(130, 130, Color.TRANSPARENT);

@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="662a8982-8cf0-4061-853b-5648df550aa1" name="Changes" comment="Deleted redundant attributes">
+    <list default="true" id="662a8982-8cf0-4061-853b-5648df550aa1" name="Changes" comment="Made the make function void and build colorPalettes using attributes">
+      <change afterPath="$PROJECT_DIR$/boggle/IteratorConverter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/boggle/ColorMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/boggle/ColorMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/boggle/ColorPaletteEngineer.java" beforeDir="false" afterPath="$PROJECT_DIR$/boggle/ColorPaletteEngineer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/boggle/BlueColorPaletteBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/boggle/BlueColorPaletteBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/boggle/ColorPaletteBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/boggle/ColorPaletteBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/boggle/Datas.java" beforeDir="false" afterPath="$PROJECT_DIR$/boggle/Datas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/boggle/Dice.java" beforeDir="false" afterPath="$PROJECT_DIR$/boggle/Dice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/boggle/GridViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/boggle/GridViewer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -65,7 +76,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670400514388</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Made the make function void and build colorPalettes using attributes">
+      <created>1670401652925</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1670401652925</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -83,6 +101,7 @@
     <MESSAGE value="I changed the builder pattern slightly so that the &quot;client&quot; ColorMenu doesn't have to use if statements but instead move those if statments to ColorPaletteEngineer.java" />
     <MESSAGE value="changed the if statements in ColorPaletteEngineer.java to switches" />
     <MESSAGE value="Deleted redundant attributes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Deleted redundant attributes" />
+    <MESSAGE value="Made the make function void and build colorPalettes using attributes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made the make function void and build colorPalettes using attributes" />
   </component>
 </project>

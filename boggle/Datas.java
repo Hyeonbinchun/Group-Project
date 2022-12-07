@@ -12,10 +12,11 @@ public class Datas {
             {"AAEEGN", "ABBJOO", "ACHOPS", "AFFKPS", "AOOTTW", "CIMOTU", "DEILRX", "DELRVY",
                     "DISTTY", "EEGHNW", "EEINSU", "EHRTVW", "EIOSST", "ELRTTY", "HIMNQU", "HLNNRZ"};
 
-    public static final String[] dice_big_grid =
-            {"AAAFRS", "AAEEEE", "AAFIRS", "ADENNN", "AEEEEM", "AEEGMU", "AEGMNN", "AFIRSY",
-                    "BJKQXZ", "CCNSTW", "CEIILT", "CEILPT", "CEIPST", "DDLNOR", "DDHNOT", "DHHLOR",
-                    "DHLNOR", "EIIITT", "EMOTTT", "ENSSSU", "FIPRSY", "GORRVW", "HIPRRY", "NOOTUW", "OOOTTU"};
+    public static final ArrayList<String> dice_big_grid = new ArrayList<String>(Arrays.asList("AAAFRS", "AAEEEE",
+            "AAFIRS", "ADENNN", "AEEEEM", "AEEGMU", "AEGMNN", "AFIRSY",
+            "BJKQXZ", "CCNSTW", "CEIILT", "CEILPT", "CEIPST", "DDLNOR", "DDHNOT", "DHHLOR",
+            "DHLNOR", "EIIITT", "EMOTTT", "ENSSSU", "FIPRSY", "GORRVW", "HIPRRY", "NOOTUW", "OOOTTU"));
+
 
 
     public static double MenuWidth = 200;
@@ -29,6 +30,7 @@ public class Datas {
     public static Color strokeColor = Color.YELLOW;
 
     public static Font fontSize = new Font("Arial", 15);
+
 
     public static String boardColor = "-fx-background-color: ";
     public static double verticalSpacing = 10;

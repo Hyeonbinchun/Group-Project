@@ -1,24 +1,24 @@
 package boggle;
 
 public class BlueColorPaletteBuilder implements ColorPaletteBuilder{
-    private ColorPalette colorPalette;
+    private ColorPalette blueColorPalette;
 
     public BlueColorPaletteBuilder() {
-        this.colorPalette = new ColorPalette();
+        this.blueColorPalette = new ColorPalette();
     }
 
     @Override
     public void buildBoxColorBuilder() {
-        colorPalette.setBoxColor("BLUE");
+        blueColorPalette.setBoxColor("BLUE");
     }
 
     @Override
     public void buildStrokeColorBuilder() {
-        colorPalette.setStrokeColor("ORANGE");
+        blueColorPalette.setStrokeColor("ORANGE");
     }
 
     public ColorPalette getColorPalette() {
-        return this.colorPalette;
+        return this.blueColorPalette;
     }
 
 }
