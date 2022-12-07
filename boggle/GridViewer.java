@@ -37,6 +37,7 @@ public class GridViewer {
     private Label wordLabel;
     private Label scoreLabel;
     private Label messageLabel;
+    private Label roundLabel;
     private String word;
     private ArrayList<String> foundWords;
     private ArrayList<Rectangle> gridBox;
@@ -65,7 +66,6 @@ public class GridViewer {
 
         //Initialize boggle to get all valid words
         this.boggle = new Boggle();
-        System.out.println(this.boggle.getValidWords().toString());
 
         this.board.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->{
             Node clicked = e.getPickResult().getIntersectedNode();
@@ -94,35 +94,6 @@ public class GridViewer {
             e.consume();
         });
 
-    }
-
-    private void newGrid(){
-        this.board.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->{
-            Node clicked = e.getPickResult().getIntersectedNode();
-            int row = GridPane.getRowIndex(clicked);
-            int col = GridPane.getColumnIndex(clicked);
-            Position current = new Position(row, col);
-            if(this.pickedPosition.size() == 0) {
-                if (!this.picked[row][col] && !current.inside(this.pickedPosition)) {
-                    ((Rectangle) clicked).setStroke(Datas.strokeColor);
-                    this.picked[row][col] = true;
-                    this.pickedPosition.add(current);
-                    this.addLetter(current);
-                }
-            } else {
-                lastPicked = this.pickedPosition.get(this.pickedPosition.size() - 1);
-                if (!this.picked[row][col] && !current.inside(this.pickedPosition) &&
-                        current.inside(valid(lastPicked))) {
-                    ((Rectangle) clicked).setStroke(Datas.strokeColor);
-                    this.picked[row][col] = true;
-                    this.pickedPosition.add(current);
-                    this.addLetter(current);
-
-                }
-            }
-
-            e.consume();
-        });
     }
 
     private ArrayList<Position> valid(Position curr) {
@@ -259,7 +230,7 @@ public class GridViewer {
         this.foundWords.add(this.word);
         this.messageLabel.setText("You found: "+ this.word + " !!!");
         this.messageLabel.setFont(Datas.fontSize);
-        this.stats.addWord(this.word, GameStats.Player.Human);
+        this.stats.addWord(this.word);
         this.scoreLabel.setText("Score: " + this.stats.getScore());
         if(this.stats.getScore() >= this.stats.getHighest()){
             this.highestLabel.setText("Highest score: " + this.stats.getHighest());}
@@ -301,7 +272,9 @@ public class GridViewer {
         this.boggle = new Boggle();
         this.GridButtons();
         this.allFalse();
-
+        this.foundWords.clear();
+        this.scoreLabel.setText("Score: 0");
+        this.roundLabel.setText("Round: " + (stats.getRound()+1));
     }
     /**
      * reset the picked position.

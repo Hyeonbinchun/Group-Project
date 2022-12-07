@@ -14,7 +14,7 @@ public class GameStats {
     /**
      * set of words the player finds in a given round 
      */  
-    private Set<String> playerWords = new HashSet<String>();  
+    private static Set<String> playerWords = new HashSet<String>();
     /**
      * set of words the computer finds in a given round 
      */  
@@ -22,19 +22,19 @@ public class GameStats {
     /**
      * the player's score for the current round
      */  
-    private int pScore; 
+    private static int pScore;
     /**
      * the computer's score for the current round
      */  
-    private int cScore; 
+    private static int cScore;
     /**
      * the player's total score across every round
      */  
-    private int pScoreTotal; 
+    private static int pScoreTotal;
     /**
      * the computer's total score across every round
      */  
-    private int cScoreTotal; 
+    private static int cScoreTotal;
     /**
      * the average number of words, per round, found by the player
      */  
@@ -46,12 +46,12 @@ public class GameStats {
     /**
      * the current round being played
      */  
-    private int round;
+    private static int round;
 
     /**
      * the highest score
      */
-    private int highest;
+    private static int highest;
 
     /**
      * enumarable types of players (human or computer)
@@ -72,7 +72,6 @@ public class GameStats {
      */
     public GameStats() {
         this.highest = 0;
-
         this.round = 0;
         this.pScoreTotal = 0;
         this.cScoreTotal = 0;
@@ -94,21 +93,13 @@ public class GameStats {
      * @param word     The word to be added to the list
      * @param player  The player to whom the word was awarded
      */
-    public void addWord(String word, Player player) {
-        switch (player) {
-            case Human:
-                this.playerWords.add(word);
-                this.pScore += word.length() - 3;
-                if(this.getScore() >= this.getHighest()){
-                    this.highest = this.getScore();
-                }
-                break;
-            case Computer:
-                this.computerWords.add(word);
-                this.cScore += word.length() - 3;
-                break;
+    public static void addWord(String word) {
+        playerWords.add(word);
+        pScore += word.length() - 3;
+        pScoreTotal += word.length() - 3;
+        if (getScore() > highest){
+            highest = getScore();
         }
-
     }
 
     /* 
@@ -120,8 +111,9 @@ public class GameStats {
      */
     public void endRound() {
 
+        System.out.println("Current pScore: " + this.getScore());
+        System.out.println("Highest: " + this.getScore());
         this.round += 1;
-        this.pScoreTotal += this.pScore;
         this.cScoreTotal += this.cScore;
         this.cScore = 0;
         this.pScore = 0;
@@ -155,20 +147,19 @@ public class GameStats {
      * The total score for either player.
      * The average number of words found by each player per round.
      */
-    public void summarizeGame() {
-        System.out.println("Game Summary:");
-        System.out.println("Rounds played:" + this.round);
-        System.out.println("Player get:" + this.pScoreTotal + " total");
-        System.out.println("Computer get:" + this.cScoreTotal + " total");
-        System.out.println("Player found " + this.pAverageWords + "average words per round");
-        System.out.println("Computer found " + this.cAverageWords + "average words per round");
+    public static String[] summarizeGame() {
+        String[] summary = new String[3];
+        summary[0] = Integer.toString(getRound());
+        summary[1] = Integer.toString(getPlayerWords().size());
+        summary[2] = Integer.toString(getTotalScore());
+        return summary;
     }
 
     /* 
      * @return Set<String> The player's word list
      */
-    public Set<String> getPlayerWords() {
-        return this.playerWords;
+    public static Set<String> getPlayerWords() {
+        return playerWords;
     }
 
     /*
@@ -181,15 +172,15 @@ public class GameStats {
     /*
      * @return int The number of rounds played
      */
-    public int getRound() { return this.round; }
+    public static int getRound() { return round; }
 
     /*
     * @return int The current player score
     */
-    public int getScore() {
-        return this.pScore;
+    public static int getScore() {
+        return pScore;
     }
-    public int getHighest() {return this.highest;}
-
+    public static int getHighest() {return highest;}
+    public static int getTotalScore(){return pScoreTotal;}
 
 }
