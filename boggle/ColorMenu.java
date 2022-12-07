@@ -19,7 +19,7 @@ public class ColorMenu {
 
 
     /*
-     * Showing the start menu, choose the board size.
+     * Showing the color menu, choose the color user want.
      */
     public ColorMenu(Stage stage) {
         this.ColorMenu = stage;
@@ -35,6 +35,9 @@ public class ColorMenu {
 
     }
 
+    /*
+     * GUI buttons
+     */
     private void AddButton(String box) {
         Button button = new Button();
         button.setText(box);
@@ -56,15 +59,9 @@ public class ColorMenu {
 
     }
 
-    /**
-     * Called when user pick the grid size, show the Game board with size scene.
-     *
+    /*
+     *  Function that will show the GameViewer stage.
      */
-//    private void sizeMenu() throws IOException {
-//        Stage colorStage = new Stage();
-//        colorStage.setScene(new Scene(new SizeMenu(colorStage).getLines(), Datas.MenuWidth, Datas.MenuHeight));
-//        colorStage.show();
-//    }
     private void startGame() throws IOException {
         System.out.println("start game with: " + Datas.boardSize);
         Stage stage = new Stage();
@@ -74,6 +71,9 @@ public class ColorMenu {
         stage.show();
     }
 
+    /*
+     * Return all the buttons and labels
+     */
     public VBox getLines() {
         return this.lines;
     }

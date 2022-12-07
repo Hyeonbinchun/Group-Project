@@ -7,7 +7,7 @@ import java.util.*;
  */
 public class Boggle {
     //change path!!
-    Dictionary boggleDict = new Dictionary("/Users/alexho/Documents/GitHub/Group-Project/boggle/wordlist.txt");
+    Dictionary boggleDict = new Dictionary("/Users/a1660453695/Desktop/git life/Group-Project/boggle/wordlist.txt");
 
     private static char[][] letterBoard;
     private Map<String, ArrayList<Position>> allWords = new HashMap<String, ArrayList<Position>>();
@@ -188,6 +188,11 @@ public class Boggle {
 
     }
 
+
+    /* Get valid words list from a map
+     *
+     *  @return an arrayList of valid words
+     */
     public ArrayList<String> getValidWords(){
         ArrayList<String> validWords = new ArrayList<>();
         for (String key:allWords.keySet()) {

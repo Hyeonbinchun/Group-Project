@@ -1,10 +1,8 @@
 package boggle;
 
 import javafx.geometry.HPos;
-import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -13,21 +11,20 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * The BoggleGrid class for the first Assignment in CSC207, Fall 2022
- * The BoggleGrid represents the grid on which we play Boggle 
+ * Gridviewer class represents the boggle grid GUI.
+ * 
  */
 public class GridViewer {
 
     /**
      * size of grid
      */  
-    private final int size;
+    //private final int Datas.boardSize;
     private final GridPane board;
     private final boolean[][] picked;
     private char[][] letterBoard;
@@ -50,7 +47,7 @@ public class GridViewer {
      * @param size size of the grid
      */
     public GridViewer(int size) {
-        this.size = size;
+        Datas.boardSize = size;
         this.stats = new GameStats();
         this.foundWords = new ArrayList<>();
         this.board = new GridPane();
@@ -118,8 +115,8 @@ public class GridViewer {
     private void GridButtons() {
         this.board.setStyle(Datas.boardColor);
         this.gridBox = new ArrayList<>();
-        for (int i = 0; i < this.size; i++) {
-            for (int j = 0; j < this.size; j++) {
+        for (int i = 0; i < Datas.boardSize; i++) {
+            for (int j = 0; j < Datas.boardSize; j++) {
                 Label letter = new Label();
                 letter.setText("");
                 letter.setText(String.valueOf(letterBoard[i][j]));
@@ -265,7 +262,7 @@ public class GridViewer {
         this.stats.endRound();
         clearWord();
         this.board.getChildren().clear();
-        this.letterBoard = Boggle.initalizeBoard(this.size);
+        this.letterBoard = Boggle.initalizeBoard(Datas.boardSize);
         this.boggle = new Boggle();
         this.GridButtons();
         this.allFalse();
@@ -277,8 +274,8 @@ public class GridViewer {
      * reset the picked position.
      */
     private void allFalse() {
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
+        for (int i = 0; i < Datas.boardSize; i++) {
+            for (int j = 0; j < Datas.boardSize; j++) {
                 this.picked[i][j] = false;
             }
         }
