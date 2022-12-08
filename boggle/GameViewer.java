@@ -10,17 +10,20 @@ import javafx.stage.Stage;
 public class GameViewer {
 
 
-    private BorderPane board = new BorderPane();
-    private GridViewer bogglegrid;
-    private Datas datas;
+    private BorderPane board = new BorderPane(); // board data structure
+    private GridViewer boggleGrid;// boggleGrid data structure
+    private static GameViewer firstInstance = null; // firstInstance data structure
 
-    private static GameViewer firstInstance = null;
+    /**
+     * Constructor for the gameViewer GUI
+     * @param size board size that user picked
+     */
     private GameViewer(int size){
-        bogglegrid = new GridViewer(size);
-        board.setCenter(bogglegrid.getGrid());
+        boggleGrid = new GridViewer(size);
+        board.setCenter(boggleGrid.getGrid());
         // buttons here
         BorderPane bottomButtons = new BorderPane();
-        bogglegrid.addButtons(bottomButtons);
+        boggleGrid.addButtons(bottomButtons);
         board.setBottom(bottomButtons);
         Button button = new Button("End Game");
         bottomButtons.setBottom(button);
@@ -30,12 +33,20 @@ public class GameViewer {
         BorderPane.setAlignment(button, Pos.CENTER);
     }
 
+    /**
+     * Showing the resultMenu GUI when called
+     */
     public static void resultMenu(){
         Stage resultStage = new Stage();
         resultStage.setScene(new Scene(new ResultMenu(resultStage).getLines(), Datas.MenuWidth, Datas.MenuHeight));
         resultStage.show();
     }
 
+    /**
+     *
+     * @param size
+     * @return GameViewer
+     */
     public static GameViewer getInstance(int size){
         if (firstInstance == null){
             firstInstance = new GameViewer(size);

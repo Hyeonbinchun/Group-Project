@@ -36,9 +36,9 @@ public class Position {
         this.col = col;
     }
 
-   /*
-     * Useful getter and setter method for class attributes
-     */
+   /**
+    * Useful getter and setter method for class attributes
+    */
     public void setRow(int row) { this.row = row; }
     public void setCol(int col) { this.col = col; }
     public int getRow() { return this.row; }

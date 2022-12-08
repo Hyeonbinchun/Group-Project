@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.TreeSet;
 
 /**
- * The Dictionary class for the first Assignment in CSC207, Fall 2022
+ * Dictionary class
  * The Dictionary will contain lists of words that are acceptable for Boggle 
  */
 public class Dictionary {
@@ -43,7 +43,7 @@ public class Dictionary {
         }
         System.out.println("Initialized " + wordcount + " words in the Dictionary.");;
     }
-    /*
+    /**
      * Create a Dictionary with provided TreeSet<String> l
      */
     public Dictionary(TreeSet<String> l) {
@@ -51,7 +51,7 @@ public class Dictionary {
 
     }
 
-    /* 
+    /**
      * Checks to see if a provided word is in the dictionary.
      *
      * @param word  The word to check
@@ -67,7 +67,7 @@ public class Dictionary {
         return false;
     }
 
-    /* 
+    /**
      * Checks to see if a provided string is a prefix of any word in the dictionary.
      *
      * @param str  The string to check
@@ -83,7 +83,7 @@ public class Dictionary {
         return false;
     }
 
-    /*
+    /**
      * Get the total number of the legal words
      *
      * @return number of legal words

@@ -6,20 +6,30 @@ import java.util.*;
  * The BoggleGame class for the first Assignment in CSC207, Fall 2022
  */
 public class Boggle {
-    //change path!!
+
+    // Constructor for a blueColorPalette with path of text file make sure it's correct path on your computer!!!
     Dictionary boggleDict = new Dictionary("/Users/a1660453695/Desktop/git life/Group-Project/boggle/wordlist.txt");
 
-    private static char[][] letterBoard;
+    private static char[][] letterBoard; // the letter will be placed on board
+
+    // hashmap that store valid words as well as the path on the letterBoard
     private Map<String, ArrayList<Position>> allWords = new HashMap<String, ArrayList<Position>>();
 
+    /**
+     * Constructor for boggle, finding all valid words on the letterBoard
+     */
     public Boggle(){
         this.findAllWords(allWords, letterBoard);
     }
 
 
-
+    /**
+     * Fill letterBoard with proper size
+     * @param size
+     * @return the filled letterBoard with letter
+     */
     public static char[][] initalizeBoard(int size) {
-        String letters = randomizeLetters(size);
+        String letters = randomizeLetters();
         int i = 0;
         letterBoard = new char[size][size];
         for(int row = 0; row < size; row++){
@@ -37,23 +47,16 @@ public class Boggle {
 
     /*
      * This method should return a String of letters (length 16 or 25 depending on the size of the grid).
-     * There will be one letter per grid position, and they will be organized left to right,
-     * top to bottom. A strategy to make this string of letters is as follows:
-     * -- Assign a one of the dice to each grid position (i.e. dice_big_grid or dice_small_grid)
-     * -- "Shuffle" the positions of the dice to randomize the grid positions they are assigned to
-     * -- Randomly select one of the letters on the given die at each grid position to determine
-     *    the letter at the given position
      *
      * @return String a String of random letters (length 16 or 25 depending on the size of the grid)
      */
-    private static String randomizeLetters(int size){
+    private static String randomizeLetters(){
         String random_letter = "";
         String[] letters;
         Dice dice = new Dice();
         Iterator<String> diceCollection = dice.getIterator();
         letters = shuffle(diceCollection);
 
-        //System.out.println(letters);
         for (int row=0; row < letters.length; row++) {
                 random_letter += letters[row];
         }

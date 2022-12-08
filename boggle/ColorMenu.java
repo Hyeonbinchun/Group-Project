@@ -11,15 +11,18 @@ import java.io.IOException;
 //importing colors
 import javafx.scene.paint.Color;
 
+/*
+ * ColorMenu class. GUI window for user to choose the box color they want.
+ */
 public class ColorMenu {
 
-    private VBox lines;
-    private Stage ColorMenu;
-    private String[] colorBoxList = {"RED", "BLUE", "ORANGE"};
+    private VBox lines; // VBox that store every element display on the screen, such as labels and buttons
+    private Stage ColorMenu; // ColorMenu stage
+    private String[] colorBoxList = {"RED", "BLUE", "ORANGE"}; // box color list that user can change
 
 
-    /*
-     * Showing the color menu, choose the color user want.
+    /**
+     * Constructor for color menu, choose the color user want.
      */
     public ColorMenu(Stage stage) {
         this.ColorMenu = stage;
@@ -35,7 +38,7 @@ public class ColorMenu {
 
     }
 
-    /*
+    /**
      * GUI buttons
      */
     private void AddButton(String box) {
@@ -59,7 +62,7 @@ public class ColorMenu {
 
     }
 
-    /*
+    /**
      *  Function that will show the GameViewer stage.
      */
     private void startGame() throws IOException {
@@ -71,8 +74,9 @@ public class ColorMenu {
         stage.show();
     }
 
-    /*
-     * Return all the buttons and labels
+    /**
+     * Getter method for getting all buttons and labels
+     * @Return all the buttons and labels
      */
     public VBox getLines() {
         return this.lines;

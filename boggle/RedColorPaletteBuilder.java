@@ -1,24 +1,40 @@
 package boggle;
 
+/**
+ * RedColorPaletteBuilder implements from ColorPaletteBuilder. It builds red color palette
+ */
 public class RedColorPaletteBuilder implements ColorPaletteBuilder{
-    private ColorPalette colorPalette;
+    private ColorPalette RedColorPalette; // redColorPalette data structure
 
+    /**
+     * Constructor for RedColorPalette
+     */
     public RedColorPaletteBuilder() {
-        this.colorPalette = new ColorPalette();
+        this.RedColorPalette = new ColorPalette();
     }
 
+    /**
+     * set box color to red
+     */
     @Override
     public void buildBoxColorBuilder() {
-        colorPalette.setBoxColor("RED");
+        RedColorPalette.setBoxColor("RED");
     }
 
+    /**
+     * set stroke color to Green
+     */
     @Override
     public void buildStrokeColorBuilder() {
-        colorPalette.setStrokeColor("GREEN");
+        RedColorPalette.setStrokeColor("GREEN");
     }
 
+    /**
+     *
+     * @return RedColorPalette
+     */
     public ColorPalette getColorPalette() {
-        return this.colorPalette;
+        return this.RedColorPalette;
     }
 
 }

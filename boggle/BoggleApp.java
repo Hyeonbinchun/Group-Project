@@ -14,7 +14,7 @@ public class BoggleApp extends Application {
     }
 
 
-    /*
+    /**
      * Show the start Menu
      */
     @Override

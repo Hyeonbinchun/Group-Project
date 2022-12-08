@@ -1,10 +1,14 @@
 package boggle;
 
-
+/**
+ * ColorPaletteEngineer
+ *
+ * set the different types of colorPaletteBuilders depending on the color user choose
+ */
 public class ColorPaletteEngineer {
     private ColorPaletteBuilder colorPaletteBuilder;
 
-    /*
+    /**
      * Initializer that create different types of colorPaletteBuilders depending on the colorType argument
      */
     public ColorPaletteEngineer(String colorType){
@@ -16,7 +20,7 @@ public class ColorPaletteEngineer {
 
     }
 
-    /*
+    /**
      * Building the box color and stroke color depending on which color user choose.
      */
     public void makeColorPalette() {

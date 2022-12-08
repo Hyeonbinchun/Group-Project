@@ -1,24 +1,37 @@
 package boggle;
 
+/**
+ * OrangeColorPaletteBuilder implements from ColorPaletteBuilder. It builds orange color palette
+ */
 public class OrangeColorPaletteBuilder implements ColorPaletteBuilder {
-    private ColorPalette colorPalette;
+    private ColorPalette orangeColorPalette;
 
     public OrangeColorPaletteBuilder() {
-        this.colorPalette = new ColorPalette();
+        this.orangeColorPalette = new ColorPalette();
     }
 
+    /**
+     * set box color to orange
+     */
     @Override
     public void buildBoxColorBuilder() {
-        colorPalette.setBoxColor("ORANGE");
+        orangeColorPalette.setBoxColor("ORANGE");
     }
 
+    /**
+     * set stroke color to blue
+     */
     @Override
     public void buildStrokeColorBuilder() {
-        colorPalette.setStrokeColor("BLUE");
+        orangeColorPalette.setStrokeColor("BLUE");
     }
 
+    /**
+     *
+     * @return orangeColorPalette
+     */
     public ColorPalette getColorPalette() {
-        return this.colorPalette;
+        return this.orangeColorPalette;
     }
 
 }

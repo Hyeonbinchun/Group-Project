@@ -8,19 +8,19 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+/**
+ * Start menu GUI class
+ */
 public class StartMenu {
 
-    private VBox lines;
-    private Stage StartMenu;
-
-
+    private VBox lines; // Stores labels and buttons on the start menu
+    private Stage StartMenu; // Stage on a startMenu
     private int[] gridSize = {5, 4}; // The size of the grid available here, you can adjust size here.
 
 
-    /*
+    /**
      * Showing the start menu, choose the board size.
      */
-
     public StartMenu(Stage stage) {
         this.StartMenu = stage;
         lines = new VBox(Datas.verticalSpacing); //Set vertical box spacing
@@ -36,6 +36,10 @@ public class StartMenu {
 
     }
 
+    /**
+     * add buttons with size that player can be selected
+     * @param size
+     */
     private void AddButton(int size) {
         Button button = new Button();
         button.setText(size + " * " + size);
@@ -53,7 +57,7 @@ public class StartMenu {
     }
 
     /**
-     * Called when user pick the grid size, show the Color Menu with size scene.
+     * Called when user picked the grid size, show the Color Menu with size scene.
      *
      */
     private void colorMenu() throws IOException {
@@ -62,6 +66,10 @@ public class StartMenu {
         colorStage.show();
     }
 
+    /**
+     *
+     * @return buttons and labels on start menu
+     */
     public VBox getLines() {
         return this.lines;
     }

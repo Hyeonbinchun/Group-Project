@@ -1,10 +1,13 @@
 package boggle;
 
+/**
+ * ColorPalette that implements ColorPalettePLan
+ */
 public class ColorPalette implements ColorPalettePlan{
-    private String boxColor;
-    private String StrokeColor;
+    private String boxColor; // Store box color
+    private String StrokeColor; // Store stroke color
 
-    /*
+    /**
      * Set box color
      */
     @Override
@@ -12,7 +15,7 @@ public class ColorPalette implements ColorPalettePlan{
         this.boxColor = boxColor;
     }
 
-    /*
+    /**
      * Set stroke color
      */
     @Override
@@ -20,14 +23,14 @@ public class ColorPalette implements ColorPalettePlan{
         this.StrokeColor = StrokeColor;
     }
 
-    /*
+    /**
      * Getter of boxColor
      */
     public String getBoxColor() {
         return boxColor;
     }
 
-    /*
+    /**
      * Getter of strokeColor
      */
     public String getStrokeColor() {

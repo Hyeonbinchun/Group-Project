@@ -11,7 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-
+import javafx.scene.text.Font;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -21,25 +21,21 @@ import java.util.Arrays;
  */
 public class GridViewer {
 
-    /**
-     * size of grid
-     */  
-    //private final int Datas.boardSize;
-    private final GridPane board;
-    private final boolean[][] picked;
-    private char[][] letterBoard;
-    private ArrayList<Position> pickedPosition;
-    private Label highestLabel;
-    private Label wordLabel;
-    private Label scoreLabel;
-    private Label messageLabel;
-    private Label roundLabel;
-    private String word;
-    private ArrayList<String> foundWords;
-    private ArrayList<Rectangle> gridBox;
-    private Position lastPicked;
-    private Boggle boggle;
-    private GameStats stats;
+    private final GridPane board; // board data Structure
+    private final boolean[][] picked; // place that store which position on the grid is picked
+    private char[][] letterBoard; // place that store letters with position on the letterBoard
+    private ArrayList<Position> pickedPosition; // place that store picked position
+    private Label highestLabel; // a label that will show the highest score
+    private Label wordLabel; // a label that will show letters user selected
+    private Label scoreLabel; // a label that will show the score player get
+    private Label messageLabel; // a message label that will tell user if the word is valid or shows the hint
+    private Label roundLabel; // a label that will show the round played
+    private String word; // store the letters player picked as a string data type. Used for compare if the word is valid
+    private ArrayList<String> foundWords; // store the word found by player
+    private ArrayList<Rectangle> gridBox; // store the Rectangle button on the grid
+    private Position lastPicked; // store the last position that user clicked
+    private Boggle boggle; // boggle data structure
+    private GameStats stats; // stats data structure
 
 
     /**

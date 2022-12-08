@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * The BoggleStats class for the first Assignment in CSC207, Fall 2022
- * The BoggleStats will contain statsitics related to game play Boggle 
+ * The BoggleStats class
+ * BoggleStats will contain statistics related to game play Boggle
  */
 public class GameStats {
 
@@ -51,7 +51,8 @@ public class GameStats {
      */
     private static int highest;
 
-    /* BoggleStats constructor
+    /**
+     * BoggleStats constructor
      * ----------------------
      * Sets round, totals and averages to 0.
      * Initializes word lists (which are sets) for computer and human players.
@@ -72,12 +73,11 @@ public class GameStats {
 
 
 
-    /* 
+    /**
      * Add a word to a given player's word list for the current round.
      * You will also want to increment the player's score, as words are added.
      *
      * @param word     The word to be added to the list
-     * @param player  The player to whom the word was awarded
      */
     public static void addWord(String word) {
         playerWords.add(word);
@@ -88,7 +88,7 @@ public class GameStats {
         }
     }
 
-    /* 
+    /**
      * End a given round.
      * This will clear out the human and computer word lists, so we can begin again.
      * The function will also update each player's total scores, average scores, and
@@ -107,24 +107,7 @@ public class GameStats {
         
     }
 
-    /* 
-     * Summarize one round of boggle.  Print out:
-     * The words each player found this round.
-     * Each number of words each player found this round.
-     * Each player's score this round.
-     */
-    public void summarizeRound() {
-        System.out.println("Round Summary:");
-        System.out.println("Player found:" + this.getPlayerWords());
-        System.out.println("Player found:" + this.getComputerWords());
-        System.out.println("Number of words player found: " + this.playerWords.size()
-                + " Score this round:" + this.pScore);
-        System.out.println("Number of words computer found: " + this.computerWords.size()
-                + " Score this round:" + this.cScore);
-
-    }
-
-    /* 
+    /**
      * Summarize the entire boggle game.  Print out:
      * The total number of rounds played.
      * The total score for either player.
@@ -138,32 +121,40 @@ public class GameStats {
         return summary;
     }
 
-    /* 
+    /**
      * @return Set<String> The player's word list
      */
     public static Set<String> getPlayerWords() {
         return playerWords;
     }
 
-    /*
+    /**
      * @return Set<String> The computer's word list
      */
     public Set<String> getComputerWords() {
         return this.computerWords;
     }
 
-    /*
+    /**
      * @return int The number of rounds played
      */
     public static int getRound() { return round; }
 
-    /*
-    * @return int The current player score
-    */
+    /**
+     * @return int The current player score
+     */
     public static int getScore() {
         return pScore;
     }
+
+    /**
+     * @return int highest score in a round
+     */
     public static int getHighest() {return highest;}
+
+    /**
+     * @return int total score for all rounds
+     */
     public static int getTotalScore(){return pScoreTotal;}
 
 }

@@ -1,8 +1,12 @@
 package boggle;
 
+/**
+ * HintPress class with command pattern
+ */
 public class HintPress implements Command{
-    ButtonObject theButton;
-    public HintPress(ButtonObject button){
+    Hint theButton; // theButton data structure
+
+    public HintPress(Hint button){
         theButton = button;
     }
 
