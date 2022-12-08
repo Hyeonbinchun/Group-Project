@@ -11,7 +11,7 @@ import java.io.IOException;
 //importing colors
 import javafx.scene.paint.Color;
 
-/*
+/**
  * ColorMenu class. GUI window for user to choose the box color they want.
  */
 public class ColorMenu {

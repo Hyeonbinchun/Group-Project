@@ -7,6 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+/**
+ * main screen that made of end game button and game grid
+ */
 public class GameViewer {
 
 
